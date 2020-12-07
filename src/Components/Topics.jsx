@@ -8,7 +8,7 @@ class Topics extends Component {
     render() {
         return (
             <div>
-                <h1>Topics</h1>
+                <h2>Topics</h2>
             </div>
         );
     }
