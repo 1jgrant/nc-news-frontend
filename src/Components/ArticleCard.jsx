@@ -8,7 +8,7 @@ const ArticleCardContainer = styled.div`
     background: rgba(152, 154, 152, 0.479);
     padding: 1px;
     margin: 10px;
-    width: 50vw;
+    width: 60vw;
     max-height: 200px;
 
     div{
@@ -20,7 +20,7 @@ const CardContent = styled.div`
     display: flex;
     flex-direction: column;
     .comments {
-        color: red;
+        color: rgba(16, 16, 93, 0.874);
         text-decoration: none;
         align-self: flex-end;
     }
@@ -28,9 +28,13 @@ const CardContent = styled.div`
 const CardHeader = styled.div`
     display: flex;
     justify-content: space-between;
-    
+    align-items: center;
+    h4{
+        margin: 0.3rem;
+    }
 `
 const ArticleBody = styled.p`
+    font-size: 0.8rem;
     grid-column-start: 2;
     background: rgba(111, 111, 111, 0.435);
     display: block;
@@ -48,7 +52,7 @@ const ArticleCard = (props) => {
             <CardContent>
                 <CardHeader>
                     <h4>{title}</h4>
-                    <h6>posted in {topic} by {author}</h6>
+                    <span>posted in {topic} by {author}</span>
                 </CardHeader>
                 <ArticleBody>
                     {body}

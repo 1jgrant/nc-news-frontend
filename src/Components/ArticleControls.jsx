@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 const ControlsContainer = styled.div`
     background: rgba(239, 153, 153, 0.531);
+    margin: 0.5rem;
+    padding: 1rem;
 `
 
 
@@ -14,7 +16,26 @@ class ArticleControls extends Component {
     render() {
         return (
             <ControlsContainer>
-                <h1>Controls</h1>
+                <form>
+                    <label>
+                        Filter By
+                        <select>
+                            <option>Choose</option>
+                            <option>Author</option>
+                            <option>Topic</option>
+                            <option>Choose</option>
+                        </select>
+                    </label>
+                    <label>
+                        Sort By
+                        <select>
+                            <option>Choose</option>
+                            <option>Author</option>
+                            <option>Topic</option>
+                            <option>Choose</option>
+                        </select>
+                    </label>
+                </form>
             </ControlsContainer>
         );
     }
