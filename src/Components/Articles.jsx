@@ -20,20 +20,25 @@ class Articles extends Component {
 
   componentDidMount() {
     API.getArticles(this.props.topic_name).then((articles) => {
-      this.setState({ articles: articles, isLoading: false });
+      this.setState({ articles, isLoading: false });
     });
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.topic_name !== prevProps.topic_name) {
       API.getArticles(this.props.topic_name).then((articles) => {
-        this.setState({ articles: articles, isLoading: false });
+        this.setState({ articles, isLoading: false });
       });
     }
   }
 
   render() {
-    if (this.state.isLoading) return <Loader />;
+    if (this.state.isLoading)
+      return (
+        <ArticlesContainer>
+          <Loader />
+        </ArticlesContainer>
+      );
     return (
       <ArticlesContainer>
         <ArticleControls />

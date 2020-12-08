@@ -16,6 +16,11 @@ const HeaderContainer = styled.div`
   }
 `;
 
+const ContentContainer = styled.main`
+  display: flex;
+  justify-content: center;
+`;
+
 class App extends Component {
   state = {
     topic: 'all',
@@ -32,11 +37,13 @@ class App extends Component {
           <Topics topic={topic} />
           <Users username={username} />
         </HeaderContainer>
-        <Router>
-          <Articles path="/" />
-          <Articles path="/articles/topics/:topic_name" />
-          <SingleArticle path="/articles/:article_id" />
-        </Router>
+        <ContentContainer>
+          <Router>
+            <Articles path="/" />
+            <Articles path="/articles/topics/:topic_name" />
+            <SingleArticle path="/articles/:article_id" />
+          </Router>
+        </ContentContainer>
       </div>
     );
   }
