@@ -1,3 +1,4 @@
+import { Link } from '@reach/router';
 import React from 'react';
 import styled from 'styled-components';
 import Votes from './Votes';
@@ -5,14 +6,23 @@ import Votes from './Votes';
 const ArticleCardContainer = styled.div`
     display: flex;
     background: rgba(152, 154, 152, 0.479);
-    padding: 5px;
+    padding: 1px;
     margin: 10px;
     width: 50vw;
-    height: 300px;
+    max-height: 200px;
 
     div{
         background: rgba(176, 178, 176, 0.764);
         margin: 5px;
+    }
+`
+const CardContent = styled.div`
+    display: flex;
+    flex-direction: column;
+    .comments {
+        color: red;
+        text-decoration: none;
+        align-self: flex-end;
     }
 `
 const CardHeader = styled.div`
@@ -20,7 +30,6 @@ const CardHeader = styled.div`
     justify-content: space-between;
     
 `
-
 const ArticleBody = styled.p`
     grid-column-start: 2;
     background: rgba(111, 111, 111, 0.435);
@@ -36,13 +45,17 @@ const ArticleCard = (props) => {
     return (
         <ArticleCardContainer>
             <Votes votes={votes}/>
-            <CardHeader>
-                <h4>{title}</h4>
-                <h4>posted in {topic} by {author}</h4>
-            </CardHeader>
-            <ArticleBody>
-                {body}
-            </ArticleBody>
+            <CardContent>
+                <CardHeader>
+                    <h4>{title}</h4>
+                    <h6>posted in {topic} by {author}</h6>
+                </CardHeader>
+                <ArticleBody>
+                    {body}
+                </ArticleBody> 
+                <Link className='comments' to='/'>{comment_count} comments</Link> 
+            </CardContent>
+            
         </ArticleCardContainer>
     );
 };
