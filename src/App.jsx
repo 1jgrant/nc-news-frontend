@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import "./App.css";
-import { Router, Link } from "@reach/router";
-import Topics from "./Components/Topics";
-import Users from "./Components/Users";
-import Articles from "./Components/Articles";
-import SingleArticle from "./Components/Articles";
-import styled from "styled-components";
+import React, { Component } from 'react';
+import './App.css';
+import { Router, Link } from '@reach/router';
+import Topics from './Components/Topics';
+import Users from './Components/Users';
+import Articles from './Components/Articles';
+import SingleArticle from './Components/Articles';
+import styled from 'styled-components';
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -18,8 +18,8 @@ const HeaderContainer = styled.div`
 
 class App extends Component {
   state = {
-    topic: "all",
-    username: "weegembump",
+    topic: 'all',
+    username: 'weegembump',
   };
   render() {
     const { topic, username } = this.state;
@@ -34,6 +34,7 @@ class App extends Component {
         </HeaderContainer>
         <Router>
           <Articles path="/" />
+          <Articles path="/topics/:topic_name" />
         </Router>
       </div>
     );
