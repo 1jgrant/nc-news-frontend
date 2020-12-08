@@ -16,7 +16,7 @@ const ArticleCardContainer = styled.div`
     margin: 5px;
   }
 `;
-const CardContent = styled.div`
+const ArticleCardContent = styled.div`
   display: flex;
   flex-direction: column;
   .comments {
@@ -25,7 +25,7 @@ const CardContent = styled.div`
     align-self: flex-end;
   }
 `;
-const CardHeader = styled.div`
+const ArticleCardHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -56,20 +56,20 @@ const ArticleCard = (props) => {
   return (
     <ArticleCardContainer>
       <Votes votes={votes} />
-      <CardContent>
-        <CardHeader>
+      <ArticleCardContent>
+        <ArticleCardHeader>
           <Link to={`/articles/${article_id}`}>
             <h4>{title}</h4>
           </Link>
           <span>
             posted in {topic} by {author}
           </span>
-        </CardHeader>
+        </ArticleCardHeader>
         <ArticleBody>{body}</ArticleBody>
         <Link className="comments" to="/">
           {comment_count} comments
         </Link>
-      </CardContent>
+      </ArticleCardContent>
     </ArticleCardContainer>
   );
 };

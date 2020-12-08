@@ -5,11 +5,19 @@ import Comments from './Comments';
 import * as API from '../API';
 import Loader from './Loader';
 
-const ArticleContainer = styled.div`
+const ContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const SectionContainer = styled.div`
   display: flex;
   background: rgba(219, 217, 217, 0.661);
   padding: 10px;
   width: 60vw;
+  margin: 20px;
 `;
 
 const ArticleHeader = styled.div`
@@ -45,13 +53,13 @@ class SingleArticle extends Component {
     const { title, body, votes, topic, author } = this.state.article;
     if (this.state.isLoading)
       return (
-        <ArticleContainer>
+        <ContentContainer>
           <Loader />
-        </ArticleContainer>
+        </ContentContainer>
       );
     return (
-      <>
-        <ArticleContainer>
+      <ContentContainer>
+        <SectionContainer>
           <Votes votes={votes} />
           <ArticleContent>
             <ArticleHeader>
@@ -62,9 +70,11 @@ class SingleArticle extends Component {
             </ArticleHeader>
             <ArticleBody>{body}</ArticleBody>
           </ArticleContent>
-        </ArticleContainer>
-        <Comments />
-      </>
+        </SectionContainer>
+        <SectionContainer>
+          <Comments article_id={this.props.article_id} />
+        </SectionContainer>
+      </ContentContainer>
     );
   }
 }
