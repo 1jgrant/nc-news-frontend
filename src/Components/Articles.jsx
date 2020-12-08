@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ArticleControls from './ArticleControls';
 import ArticleCard from './ArticleCard';
 import styled from 'styled-components';
+import Loader from './Loader';
+import * as API from '../API'
 
 const ArticlesContainer = styled.div`
     display: flex;
@@ -18,8 +20,14 @@ class Articles extends Component {
         isLoading: true
     }
 
+    componentDidMount() {
+        API.getArticles().then(articles => {
+            this.setState({articles: articles, isLoading: false})
+        })
+    }
+
     render() {
-        //if (this.state.isLoading) return <Loader/>
+        if (this.state.isLoading) return <Loader/>
         return (
             <ArticlesContainer>
                 <ArticleControls/>

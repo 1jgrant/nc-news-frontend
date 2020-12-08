@@ -10,7 +10,7 @@ import styled from "styled-components";
 const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-around;
-  background-color: rgba(128, 128, 128, 0.442);
+  background-color: grey;
   h1 {
     color: #000000;
   }
