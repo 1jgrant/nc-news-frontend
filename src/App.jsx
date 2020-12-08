@@ -4,7 +4,7 @@ import { Router, Link } from '@reach/router';
 import Topics from './Components/Topics';
 import Users from './Components/Users';
 import Articles from './Components/Articles';
-import SingleArticle from './Components/Articles';
+import SingleArticle from './Components/SingleArticle';
 import styled from 'styled-components';
 
 const HeaderContainer = styled.div`
@@ -34,7 +34,8 @@ class App extends Component {
         </HeaderContainer>
         <Router>
           <Articles path="/" />
-          <Articles path="/topics/:topic_name" />
+          <Articles path="/articles/topics/:topic_name" />
+          <SingleArticle path="/articles/:article_id" />
         </Router>
       </div>
     );

@@ -33,7 +33,6 @@ class Articles extends Component {
   }
 
   render() {
-    console.log(this.props);
     if (this.state.isLoading) return <Loader />;
     return (
       <ArticlesContainer>

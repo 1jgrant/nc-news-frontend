@@ -21,7 +21,7 @@ class Topics extends Component {
         <Link to="/">All</Link>
         {topics.map((topic) => {
           return (
-            <Link key={topic.slug} to={`/topics/${topic.slug}`}>
+            <Link key={topic.slug} to={`/articles/topics/${topic.slug}`}>
               {topic.slug}
             </Link>
           );
