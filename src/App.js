@@ -1,9 +1,20 @@
 import React, { Component } from "react";
 import "./App.css";
-import { Router } from "@reach/router";
-import Header from "./Components/Header";
+import { Router, Link } from "@reach/router";
+import Topics from "./Components/Topics";
+import Users from "./Components/Users";
 import Articles from "./Components/Articles";
 import SingleArticle from "./Components/Articles";
+import styled from "styled-components";
+
+const HeaderContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  background-color: rgba(128, 128, 128, 0.442);
+  h1 {
+    color: #000000;
+  }
+`;
 
 class App extends Component {
   state = {
@@ -14,7 +25,13 @@ class App extends Component {
     const { topic, username } = this.state;
     return (
       <div>
-        <Header topic={topic} username={username} />
+        <HeaderContainer>
+          <Link to="/">
+            <h1>NC News</h1>
+          </Link>
+          <Topics topic={topic} />
+          <Users username={username} />
+        </HeaderContainer>
         <Router>
           <Articles path="/" />
         </Router>
