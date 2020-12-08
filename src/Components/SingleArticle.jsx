@@ -10,9 +10,11 @@ const ContentContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 60vw;
+  background: rgba(176, 184, 176, 0.329);
 `;
 
-const SectionContainer = styled.div`
+const ArticleContainer = styled.div`
   display: flex;
   background: rgba(219, 217, 217, 0.661);
   padding: 10px;
@@ -59,7 +61,7 @@ class SingleArticle extends Component {
       );
     return (
       <ContentContainer>
-        <SectionContainer>
+        <ArticleContainer>
           <Votes votes={votes} />
           <ArticleContent>
             <ArticleHeader>
@@ -70,10 +72,8 @@ class SingleArticle extends Component {
             </ArticleHeader>
             <ArticleBody>{body}</ArticleBody>
           </ArticleContent>
-        </SectionContainer>
-        <SectionContainer>
-          <Comments article_id={this.props.article_id} />
-        </SectionContainer>
+        </ArticleContainer>
+        <Comments article_id={this.props.article_id} />
       </ContentContainer>
     );
   }

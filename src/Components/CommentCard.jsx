@@ -7,6 +7,7 @@ const CommentCardContainer = styled.div`
   display: flex;
   background: rgba(79, 127, 195, 0.607);
   margin: 1rem;
+  width: 100vh;
 `;
 
 const CommentCardContent = styled.div`
@@ -27,7 +28,7 @@ const CommentCard = (props) => {
           <Link to={'/'}>
             <span>{author}</span>
           </Link>
-          <span>time ago</span>
+          <span>{created_at}</span>
         </CommentCardHeader>
         <CommentBody>{body}</CommentBody>
       </CommentCardContent>
