@@ -59,6 +59,7 @@ class SingleArticle extends Component {
       topic,
       author,
       since_posted,
+      article_id,
     } = this.state.article;
     if (this.state.isLoading)
       return (
@@ -69,7 +70,7 @@ class SingleArticle extends Component {
     return (
       <ContentContainer>
         <ArticleContainer>
-          <Votes votes={votes} />
+          <Votes article_id={article_id} votes={votes} />
           <ArticleContent>
             <ArticleHeader>
               <h1>{title}</h1>
