@@ -34,3 +34,11 @@ export const getComments = (article_id) => {
     return formatCreatedAt(data.comments);
   });
 };
+
+export const updateVotes = (target, change) => {
+  console.log(target, change);
+  const { article_id, comment_id } = target;
+  if (article_id) {
+    return ncNewsAPI.patch(`articles/${article_id}`, { inc_votes: change });
+  }
+};

@@ -56,7 +56,7 @@ const ArticleCard = (props) => {
   } = props.article;
   return (
     <ArticleCardContainer>
-      <Votes votes={votes} />
+      <Votes article_id={article_id} votes={votes} />
       <ArticleCardContent>
         <ArticleCardHeader>
           <Link to={`/articles/${article_id}`}>
