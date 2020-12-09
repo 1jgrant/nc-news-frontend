@@ -51,6 +51,7 @@ const ArticleCard = (props) => {
     votes,
     topic,
     comment_count,
+    since_posted,
     article_id,
   } = props.article;
   return (
@@ -62,7 +63,7 @@ const ArticleCard = (props) => {
             <h4>{title}</h4>
           </Link>
           <span>
-            posted in {topic} by {author}
+            posted in {topic} by {author} {since_posted}
           </span>
         </ArticleCardHeader>
         <ArticleBody>{body}</ArticleBody>

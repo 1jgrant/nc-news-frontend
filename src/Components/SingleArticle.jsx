@@ -52,7 +52,14 @@ class SingleArticle extends Component {
   }
 
   render() {
-    const { title, body, votes, topic, author } = this.state.article;
+    const {
+      title,
+      body,
+      votes,
+      topic,
+      author,
+      since_posted,
+    } = this.state.article;
     if (this.state.isLoading)
       return (
         <ContentContainer>
@@ -67,7 +74,7 @@ class SingleArticle extends Component {
             <ArticleHeader>
               <h1>{title}</h1>
               <span>
-                posted in {topic} by {author} xtime ago
+                posted in {topic} by {author} {since_posted}
               </span>
             </ArticleHeader>
             <ArticleBody>{body}</ArticleBody>

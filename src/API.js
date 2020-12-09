@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { formatCreatedAt } from './Components/utils/data-formatting';
 
 const ncNewsAPI = axios.create({
   baseURL: 'https://jg-news-app.herokuapp.com/api',
@@ -12,7 +13,7 @@ export const getArticles = (topic_slug) => {
       },
     })
     .then(({ data }) => {
-      return data.articles;
+      return formatCreatedAt(data.articles);
     });
 };
 
@@ -24,12 +25,12 @@ export const getTopics = () => {
 
 export const getArticle = (article_id) => {
   return ncNewsAPI.get(`/articles/${article_id}`).then(({ data }) => {
-    return data.article;
+    return formatCreatedAt([data.article])[0];
   });
 };
 
 export const getComments = (article_id) => {
   return ncNewsAPI.get(`/articles/${article_id}/comments`).then(({ data }) => {
-    return data.comments;
+    return formatCreatedAt(data.comments);
   });
 };

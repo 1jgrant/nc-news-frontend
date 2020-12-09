@@ -19,7 +19,14 @@ const CommentCardHeader = styled.div``;
 const CommentBody = styled.p``;
 
 const CommentCard = (props) => {
-  const { comment_id, votes, created_at, author, body } = props.comment;
+  const {
+    comment_id,
+    votes,
+    created_at,
+    author,
+    body,
+    since_posted,
+  } = props.comment;
   return (
     <CommentCardContainer>
       <Votes votes={votes} />
@@ -28,7 +35,7 @@ const CommentCard = (props) => {
           <Link to={'/'}>
             <span>{author}</span>
           </Link>
-          <span>{created_at}</span>
+          <span>{since_posted}</span>
         </CommentCardHeader>
         <CommentBody>{body}</CommentBody>
       </CommentCardContent>
