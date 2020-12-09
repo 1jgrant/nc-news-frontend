@@ -15,6 +15,7 @@ class Votes extends Component {
   };
 
   handleVote = (event) => {
+    console.log('VOTE');
     const { article_id, comment_id } = this.props;
     const { hasVoted, voteChange } = this.state;
     const targetComponent = { article_id, comment_id };

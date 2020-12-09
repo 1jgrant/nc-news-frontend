@@ -19,13 +19,21 @@ class Articles extends Component {
   };
 
   componentDidMount() {
+    //const query = this.props.location.state.query
+    //console.log(query);
     API.getArticles(this.props.topic_name).then((articles) => {
       this.setState({ articles, isLoading: false });
     });
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
+    //const query = this.props.location.state.query;
+    //console.log(query);
+    //||
+    //query !== prevProps.location.state.query
     if (this.props.topic_name !== prevProps.topic_name) {
+      console.log('in logic');
+      //console.log(query);
       API.getArticles(this.props.topic_name).then((articles) => {
         this.setState({ articles, isLoading: false });
       });

@@ -5,11 +5,14 @@ const ncNewsAPI = axios.create({
   baseURL: 'https://jg-news-app.herokuapp.com/api',
 });
 
-export const getArticles = (topic_slug) => {
+export const getArticles = (topic_slug, query) => {
+  console.log({ params: { topic: topic_slug, ...query } });
+
   return ncNewsAPI
     .get('/articles', {
       params: {
         topic: topic_slug,
+        ...query,
       },
     })
     .then(({ data }) => {

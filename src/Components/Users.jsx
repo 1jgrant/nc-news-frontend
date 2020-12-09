@@ -3,7 +3,7 @@ import * as API from '../API';
 
 class Users extends Component {
   state = {
-    currentUser: {},
+    currentUser: { avatar_url: '', name: '', username: '' },
     users: [],
   };
 
@@ -22,6 +22,7 @@ class Users extends Component {
   };
 
   render() {
+    //const { avatar_url, name, username } = this.state.currentUser;
     return (
       <div>
         <form>
