@@ -1,9 +1,9 @@
 **As a user, I should be able to...**
 
-1. view a list of all articles
-2. view a page for each topic with a list of related articles.
-3. view an individual article.
-4. view an individual article's comments.
+1. ~~view a list of all articles~~
+2. ~~view a page for each topic with a list of related articles.~~
+3. ~~view an individual article.~~
+4. ~~view an individual article's comments.~~
 5. sort articles by:
    - date created
    - comment_count
