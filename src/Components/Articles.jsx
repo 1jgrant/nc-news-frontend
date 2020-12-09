@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from '@reach/router';
 import ArticleControls from './ArticleControls';
 import ArticleCard from './ArticleCard';
 import styled from 'styled-components';
@@ -19,24 +20,25 @@ class Articles extends Component {
   };
 
   componentDidMount() {
-    //const query = this.props.location.state.query
-    //console.log(query);
-    API.getArticles(this.props.topic_name).then((articles) => {
+    //console.log(this.props);
+    API.getArticles(this.props.topic_name, this.props['*']).then((articles) => {
       this.setState({ articles, isLoading: false });
     });
   }
 
   componentDidUpdate(prevProps, prevState) {
-    //const query = this.props.location.state.query;
-    //console.log(query);
-    //||
-    //query !== prevProps.location.state.query
-    if (this.props.topic_name !== prevProps.topic_name) {
+    //console.log(this.props);
+    if (
+      this.props.topic_name !== prevProps.topic_name ||
+      this.props['*'] !== prevProps['*']
+    ) {
       console.log('in logic');
       //console.log(query);
-      API.getArticles(this.props.topic_name).then((articles) => {
-        this.setState({ articles, isLoading: false });
-      });
+      API.getArticles(this.props.topic_name, this.props['*']).then(
+        (articles) => {
+          this.setState({ articles, isLoading: false });
+        }
+      );
     }
   }
 
@@ -49,7 +51,9 @@ class Articles extends Component {
       );
     return (
       <ArticlesContainer>
-        <ArticleControls />
+        <div>
+          <ArticleControls />
+        </div>
         <main>
           {this.state.articles.map((article) => {
             return <ArticleCard key={article.article_id} article={article} />;

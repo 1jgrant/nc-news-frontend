@@ -17,30 +17,15 @@ class ArticleControls extends Component {
     sortBy: 'date',
     show: 10,
   };
+  //   state={{ query: { sort_by: 'votes' } }}
+  // state={{ query: { sort_by: 'comment_count' } }}
+  // state={{ query: { sort_by: 'created_at' } }}
   render() {
     return (
       <ControlsContainer>
-        <Link
-          className="link"
-          to="top/"
-          state={{ query: { sort_by: 'votes' } }}
-        >
-          Top
-        </Link>
-        <Link
-          className="link"
-          to="popular/"
-          state={{ query: { sort_by: 'comment_count' } }}
-        >
-          Popular
-        </Link>
-        <Link
-          className="sort"
-          to="new/"
-          state={{ query: { sort_by: 'created_at' } }}
-        >
-          New
-        </Link>
+        <Link to="top">Top</Link>
+        <Link to="popular">Popular</Link>
+        <Link to="new">New</Link>
       </ControlsContainer>
     );
   }

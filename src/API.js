@@ -6,13 +6,16 @@ const ncNewsAPI = axios.create({
 });
 
 export const getArticles = (topic_slug, query) => {
-  console.log({ params: { topic: topic_slug, ...query } });
-
+  const queries = {
+    top: { sort_by: 'votes' },
+    popular: { sort_by: 'comment_count' },
+    new: { sort_by: 'created_at' },
+  };
   return ncNewsAPI
     .get('/articles', {
       params: {
         topic: topic_slug,
-        ...query,
+        ...queries[query],
       },
     })
     .then(({ data }) => {
