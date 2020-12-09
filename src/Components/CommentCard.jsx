@@ -7,7 +7,7 @@ const CommentCardContainer = styled.div`
   display: flex;
   background: rgba(79, 127, 195, 0.607);
   margin: 1rem;
-  width: 100vh;
+  width: 60vw;
 `;
 
 const CommentCardContent = styled.div`

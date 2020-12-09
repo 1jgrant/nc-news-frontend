@@ -23,6 +23,12 @@ export const getTopics = () => {
   });
 };
 
+export const getUsers = () => {
+  return ncNewsAPI.get('/users').then(({ data }) => {
+    return data.users;
+  });
+};
+
 export const getArticle = (article_id) => {
   return ncNewsAPI.get(`/articles/${article_id}`).then(({ data }) => {
     return formatCreatedAt([data.article])[0];
@@ -36,7 +42,6 @@ export const getComments = (article_id) => {
 };
 
 export const updateVotes = (target, change) => {
-  console.log(target, change);
   const { article_id, comment_id } = target;
   if (article_id) {
     return ncNewsAPI.patch(`/articles/${article_id}`, { inc_votes: change });

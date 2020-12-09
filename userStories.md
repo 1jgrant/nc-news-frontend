@@ -10,8 +10,8 @@
    - votes
 6. post a new comment to an existing article (as a default logged in user. e.g. 'jessjelly').
 7. delete my own comments (as a default logged in user. e.g. 'jessjelly').
-8. vote on an article and immediately see the change.
-9. vote on a comment and immediately see the change.
+8. ~~vote on an article and immediately see the change.~~
+9. ~~vote on a comment and immediately see the change.~~
 
 **Error-handling: As a user, I should...**
 

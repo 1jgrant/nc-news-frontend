@@ -24,10 +24,16 @@ const ContentContainer = styled.main`
 class App extends Component {
   state = {
     topic: 'all',
-    username: 'weegembump',
+    currentUser: { avatar_url: '', name: '', username: '' },
   };
+
+  updateUser = (updatedUser) => {
+    this.setState({ currentUser: updatedUser });
+  };
+
   render() {
-    const { topic, username } = this.state;
+    const { topic } = this.state;
+    const username = this.state.currentUser.username;
     return (
       <div>
         <HeaderContainer>
@@ -35,7 +41,7 @@ class App extends Component {
             <h1>NC News</h1>
           </Link>
           <Topics topic={topic} />
-          <Users username={username} />
+          <Users username={username} updateUser={this.updateUser} />
         </HeaderContainer>
         <ContentContainer>
           <Router>
