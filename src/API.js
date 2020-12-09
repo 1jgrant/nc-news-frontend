@@ -39,6 +39,9 @@ export const updateVotes = (target, change) => {
   console.log(target, change);
   const { article_id, comment_id } = target;
   if (article_id) {
-    return ncNewsAPI.patch(`articles/${article_id}`, { inc_votes: change });
+    return ncNewsAPI.patch(`/articles/${article_id}`, { inc_votes: change });
+  }
+  if (comment_id) {
+    return ncNewsAPI.patch(`/comments/${comment_id}`, { inc_votes: change });
   }
 };

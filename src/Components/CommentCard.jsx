@@ -29,7 +29,7 @@ const CommentCard = (props) => {
   } = props.comment;
   return (
     <CommentCardContainer>
-      <Votes votes={votes} />
+      <Votes comment_id={comment_id} votes={votes} />
       <CommentCardContent>
         <CommentCardHeader>
           <Link to={'/'}>
