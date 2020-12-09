@@ -17,9 +17,6 @@ class ArticleControls extends Component {
     sortBy: 'date',
     show: 10,
   };
-  //   state={{ query: { sort_by: 'votes' } }}
-  // state={{ query: { sort_by: 'comment_count' } }}
-  // state={{ query: { sort_by: 'created_at' } }}
   render() {
     return (
       <ControlsContainer>
