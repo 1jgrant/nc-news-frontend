@@ -81,7 +81,10 @@ class SingleArticle extends Component {
             <ArticleBody>{body}</ArticleBody>
           </ArticleContent>
         </ArticleContainer>
-        <Comments article_id={this.props.article_id} />
+        <Comments
+          article_id={this.props.article_id}
+          username={this.props.username}
+        />
       </ContentContainer>
     );
   }

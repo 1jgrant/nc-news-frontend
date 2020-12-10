@@ -47,7 +47,7 @@ class App extends Component {
           <Router>
             <Articles path="/*" />
             <Articles path="/articles/topics/:topic_name/*" />
-            <SingleArticle path="/articles/:article_id/*" />
+            <SingleArticle path="/articles/:article_id/*" username={username} />
           </Router>
         </ContentContainer>
       </div>

@@ -56,3 +56,14 @@ export const updateVotes = (target, change) => {
     return ncNewsAPI.patch(`/comments/${comment_id}`, { inc_votes: change });
   }
 };
+
+export const postComment = (comment, article_id) => {
+  console.log(comment);
+  console.log(article_id);
+  return ncNewsAPI
+    .post(`/articles/${article_id}/comments`, comment)
+    .then(({ data }) => {
+      console.log('data', data);
+      return formatCreatedAt([data.newComment])[0];
+    });
+};

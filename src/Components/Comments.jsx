@@ -25,10 +25,20 @@ class Comments extends Component {
     });
   }
 
+  handleAddComment = (newComment) => {
+    this.setState((currentState) => {
+      return { comments: [newComment, ...currentState.comments] };
+    });
+  };
+
   render() {
     return (
       <CommentsContainer>
-        <CommentAdder />
+        <CommentAdder
+          article_id={this.props.article_id}
+          username={this.props.username}
+          handleAddComment={this.handleAddComment}
+        />
         {this.state.isLoading ? (
           <Loader />
         ) : (
