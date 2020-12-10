@@ -17,12 +17,27 @@ class Comments extends Component {
   state = {
     comments: [],
     isLoading: true,
+    limit: 1000,
+    sort_by: 'created_at',
+    order: 'desc',
   };
 
   componentDidMount() {
-    API.getComments(this.props.article_id).then((comments) => {
+    const { sort_by, order } = this.state;
+    API.getComments(this.props.article_id, sort_by, order).then((comments) => {
       this.setState({ comments, isLoading: false });
     });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { sort_by, order } = this.state;
+    if (sort_by !== prevState.sort_by || order !== prevState.order) {
+      API.getComments(this.props.article_id, sort_by, order).then(
+        (comments) => {
+          this.setState({ comments, isLoading: false });
+        }
+      );
+    }
   }
 
   handleAddComment = (newComment) => {
@@ -42,8 +57,16 @@ class Comments extends Component {
     });
   };
 
+  handleSort = (event) => {
+    const params = {
+      new: { sort_by: 'created_at', order: 'desc' },
+      top: { sort_by: 'votes', order: 'desc' },
+      old: { sort_by: 'created_at', order: 'asc' },
+    };
+    this.setState(params[event.target.value]);
+  };
+
   render() {
-    console.log('comments>>', this.props.username);
     return (
       <CommentsContainer>
         <CommentAdder
@@ -51,6 +74,16 @@ class Comments extends Component {
           username={this.props.username}
           handleAddComment={this.handleAddComment}
         />
+        <form onChange={this.handleSort}>
+          <label>
+            Sort
+            <select name="sort" defaultValue="new">
+              <option value="new">New</option>
+              <option value="top">Top</option>
+              <option value="old">Old</option>
+            </select>
+          </label>
+        </form>
         {this.state.isLoading ? (
           <Loader />
         ) : (

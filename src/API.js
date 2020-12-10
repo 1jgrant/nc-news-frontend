@@ -43,10 +43,17 @@ export const getArticle = (article_id) => {
   });
 };
 
-export const getComments = (article_id) => {
-  return ncNewsAPI.get(`/articles/${article_id}/comments`).then(({ data }) => {
-    return formatCreatedAt(data.comments);
-  });
+export const getComments = (article_id, sort_by, order) => {
+  return ncNewsAPI
+    .get(`/articles/${article_id}/comments`, {
+      params: {
+        sort_by,
+        order,
+      },
+    })
+    .then(({ data }) => {
+      return formatCreatedAt(data.comments);
+    });
 };
 
 export const updateVotes = (target, change) => {
