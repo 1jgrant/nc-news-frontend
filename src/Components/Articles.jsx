@@ -20,20 +20,17 @@ class Articles extends Component {
   };
 
   componentDidMount() {
-    //console.log(this.props);
     API.getArticles(this.props.topic_name, this.props['*']).then((articles) => {
       this.setState({ articles, isLoading: false });
     });
   }
 
   componentDidUpdate(prevProps, prevState) {
-    //console.log(this.props);
     if (
       this.props.topic_name !== prevProps.topic_name ||
       this.props['*'] !== prevProps['*']
     ) {
       console.log('in logic');
-      //console.log(query);
       API.getArticles(this.props.topic_name, this.props['*']).then(
         (articles) => {
           this.setState({ articles, isLoading: false });

@@ -58,8 +58,6 @@ export const updateVotes = (target, change) => {
 };
 
 export const postComment = (comment, article_id) => {
-  console.log(comment);
-  console.log(article_id);
   return ncNewsAPI
     .post(`/articles/${article_id}/comments`, comment)
     .then(({ data }) => {
