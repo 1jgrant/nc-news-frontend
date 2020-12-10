@@ -20,10 +20,13 @@ class Articles extends Component {
     isLoading: true,
     hasError: false,
     error: {},
+    limit: 10,
+    p: 1,
   };
 
   componentDidMount() {
-    API.getArticles(this.props.topic_name, this.props['*'])
+    const { limit, p } = this.state;
+    API.getArticles(this.props.topic_name, this.props['*'], limit, p)
       .then((articles) => {
         this.setState({ articles, isLoading: false });
       })
@@ -43,17 +46,25 @@ class Articles extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    const { limit, p } = this.state;
     if (
       this.props.topic_name !== prevProps.topic_name ||
-      this.props['*'] !== prevProps['*']
+      this.props['*'] !== prevProps['*'] ||
+      limit !== prevState.limit ||
+      p !== prevState.p
     ) {
-      API.getArticles(this.props.topic_name, this.props['*']).then(
+      API.getArticles(this.props.topic_name, this.props['*'], limit, p).then(
         (articles) => {
           this.setState({ articles, isLoading: false });
         }
       );
     }
   }
+
+  handlePageOptions = (options) => {
+    console.log(options);
+    this.setState(options);
+  };
 
   render() {
     const isInvalidPath = !['', 'top', 'popular', 'new'].includes(
@@ -71,9 +82,7 @@ class Articles extends Component {
     } else
       return (
         <ArticlesContainer>
-          <div>
-            <ArticleControls />
-          </div>
+          <ArticleControls handlePageOptions={this.handlePageOptions} />
           <main>
             {this.state.articles.map((article) => {
               return <ArticleCard key={article.article_id} article={article} />;

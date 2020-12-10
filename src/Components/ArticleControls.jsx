@@ -14,15 +14,33 @@ const ControlsContainer = styled.div`
 
 class ArticleControls extends Component {
   state = {
-    sortBy: 'date',
-    show: 10,
+    limit: 10,
+    p: 1,
   };
+
+  handleChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+    this.props.handlePageOptions({ [name]: value });
+  };
+
   render() {
     return (
       <ControlsContainer>
         <Link to="top">Top</Link>
         <Link to="popular">Popular</Link>
         <Link to="new">New</Link>
+        <form onChange={this.handleChange}>
+          <label>
+            View
+            <select defaultValue={10} name="limit">
+              <option value={5}>5</option>
+              <option value={10}>10</option>
+              <option value={20}>20</option>
+              <option value={1000}>All</option>
+            </select>
+          </label>
+        </form>
       </ControlsContainer>
     );
   }

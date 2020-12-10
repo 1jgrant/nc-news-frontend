@@ -5,9 +5,8 @@ const ncNewsAPI = axios.create({
   baseURL: 'https://jg-news-app.herokuapp.com/api',
 });
 
-export const getArticles = (topic_slug, query) => {
-  console.log(topic_slug);
-  const queries = {
+export const getArticles = (topic_slug, filter, limit, p) => {
+  const filters = {
     top: { sort_by: 'votes' },
     popular: { sort_by: 'comment_count' },
     new: { sort_by: 'created_at' },
@@ -16,7 +15,9 @@ export const getArticles = (topic_slug, query) => {
     .get('/articles', {
       params: {
         topic: topic_slug,
-        ...queries[query],
+        limit,
+        p,
+        ...filters[filter],
       },
     })
     .then(({ data }) => {
@@ -62,7 +63,6 @@ export const postComment = (comment, article_id) => {
   return ncNewsAPI
     .post(`/articles/${article_id}/comments`, comment)
     .then(({ data }) => {
-      console.log('data', data);
       return formatCreatedAt([data.newComment])[0];
     });
 };
