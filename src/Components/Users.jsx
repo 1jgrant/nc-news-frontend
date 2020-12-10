@@ -22,15 +22,11 @@ class Users extends Component {
   };
 
   render() {
-    //const { avatar_url, name, username } = this.state.currentUser;
     return (
       <div>
         <form>
           <span>Current User</span>
           <select onChange={this.handleChange}>
-            <option value="" disabled selected>
-              Select User
-            </option>
             {this.state.users.map((user) => {
               return (
                 <option key={user.username} value={user.username}>
