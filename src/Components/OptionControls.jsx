@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from '@reach/router';
 import styled from 'styled-components';
 
 const ControlsContainer = styled.div`
@@ -12,7 +11,7 @@ const ControlsContainer = styled.div`
   }
 `;
 
-class ArticleControls extends Component {
+class OptionControls extends Component {
   state = {
     limit: 10,
     p: 1,
@@ -30,7 +29,7 @@ class ArticleControls extends Component {
         <form onChange={this.handleChange}>
           <label>
             View
-            <select name="limit" value={10}>
+            <select name="limit" defaultValue={10}>
               <option value={5}>5</option>
               <option value={10}>10</option>
               <option value={20}>20</option>
@@ -54,4 +53,4 @@ class ArticleControls extends Component {
   }
 }
 
-export default ArticleControls;
+export default OptionControls;

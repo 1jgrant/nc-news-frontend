@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from '@reach/router';
-import ArticleControls from './ArticleControls';
+import OptionControls from './OptionControls';
 import ArticleCard from './ArticleCard';
 import styled from 'styled-components';
 import Loader from './Loader';
@@ -98,7 +98,7 @@ class Articles extends Component {
             <Link to="popular">Popular</Link>
             <Link to="new">New</Link>
           </ControlsContainer>
-          <ArticleControls
+          <OptionControls
             handlePageOptions={this.handlePageOptions}
             currentPage={this.state.p}
             currentLimit={this.state.Limit}
