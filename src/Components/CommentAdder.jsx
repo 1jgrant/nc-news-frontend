@@ -2,7 +2,19 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import * as API from '../API';
 
-const CommentContainer = styled.form``;
+const CommentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  textArea {
+    width: 50%;
+  }
+  button {
+    width: 50px;
+    background: rgba(0, 128, 0, 0.463);
+  }
+`;
 
 class CommentAdder extends Component {
   state = {
@@ -26,17 +38,20 @@ class CommentAdder extends Component {
 
   render() {
     return (
-      <CommentContainer onSubmit={this.handleSubmit}>
-        <label>
-          <input
-            type="text"
-            name="body"
-            value={this.state.body}
-            onChange={this.handleChange}
-            required
-          ></input>
-        </label>
-        <button type="submit">Post Comment</button>
+      <CommentContainer>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            <textarea
+              type="text"
+              name="body"
+              className="commentInput"
+              value={this.state.body}
+              onChange={this.handleChange}
+              required
+            ></textarea>
+          </label>
+          <button type="submit">POST</button>
+        </form>
       </CommentContainer>
     );
   }
