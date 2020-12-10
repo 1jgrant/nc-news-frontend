@@ -19,6 +19,14 @@ const HeaderContainer = styled.div`
 const ContentContainer = styled.main`
   display: flex;
   justify-content: center;
+  min-height: 600px;
+  .Router {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 600px;
+  }
 `;
 
 class App extends Component {
@@ -39,7 +47,6 @@ class App extends Component {
   render() {
     const { topic } = this.state;
     const username = this.state.currentUser.username;
-    console.log('app>>', username);
     return (
       <div>
         <HeaderContainer>
@@ -49,8 +56,8 @@ class App extends Component {
           <Topics topic={topic} />
           <Users username={username} updateUser={this.updateUser} />
         </HeaderContainer>
-        <ContentContainer>
-          <Router>
+        <ContentContainer className="ContentContainer">
+          <Router className="Router">
             <Articles path="/*" />
             <Articles path="/articles/topics/:topic_name/*" />
             <SingleArticle path="/articles/:article_id/*" username={username} />
