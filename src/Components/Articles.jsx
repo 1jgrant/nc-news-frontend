@@ -19,13 +19,27 @@ class Articles extends Component {
     articles: [],
     isLoading: true,
     hasError: false,
-    errorMessage: '',
+    error: {},
   };
 
   componentDidMount() {
-    API.getArticles(this.props.topic_name, this.props['*']).then((articles) => {
-      this.setState({ articles, isLoading: false });
-    });
+    API.getArticles(this.props.topic_name, this.props['*'])
+      .then((articles) => {
+        this.setState({ articles, isLoading: false });
+      })
+      .catch((err) => {
+        const {
+          response: {
+            status,
+            data: { msg },
+          },
+        } = err;
+        this.setState({
+          error: { status, msg },
+          hasError: true,
+          isLoading: false,
+        });
+      });
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -42,18 +56,16 @@ class Articles extends Component {
   }
 
   render() {
-    console.log(this.props);
+    //console.log(this.props);
     const isValidPath = ['', 'top', 'popular', 'new'].includes(this.props['*']);
-    const { hasError, errorMessage, isLoading } = this.state;
-    if (isLoading) {
+    const { hasError, error, isLoading } = this.state;
+    if (!isValidPath || hasError) {
+      return <ErrorPage error={error} isValidPath={isValidPath} />;
+    } else if (isLoading) {
       return (
         <ArticlesContainer>
           <Loader />
         </ArticlesContainer>
-      );
-    } else if (!isValidPath || hasError) {
-      return (
-        <ErrorPage errorMessage={errorMessage} isValidPath={isValidPath} />
       );
     } else
       return (

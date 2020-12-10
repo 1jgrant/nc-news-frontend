@@ -6,6 +6,7 @@ const ncNewsAPI = axios.create({
 });
 
 export const getArticles = (topic_slug, query) => {
+  console.log(topic_slug);
   const queries = {
     top: { sort_by: 'votes' },
     popular: { sort_by: 'comment_count' },
