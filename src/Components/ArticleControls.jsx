@@ -27,18 +27,26 @@ class ArticleControls extends Component {
   render() {
     return (
       <ControlsContainer>
-        <Link to="top">Top</Link>
-        <Link to="popular">Popular</Link>
-        <Link to="new">New</Link>
         <form onChange={this.handleChange}>
           <label>
             View
-            <select defaultValue={10} name="limit">
+            <select name="limit" value={10}>
               <option value={5}>5</option>
               <option value={10}>10</option>
               <option value={20}>20</option>
               <option value={1000}>All</option>
             </select>
+          </label>
+          <label>
+            Page
+            <input
+              type="number"
+              name="p"
+              defaultValue={1}
+              step={1}
+              min={1}
+              value={this.state.p}
+            ></input>
           </label>
         </form>
       </ControlsContainer>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from '@reach/router';
 import ArticleControls from './ArticleControls';
 import ArticleCard from './ArticleCard';
 import styled from 'styled-components';
@@ -11,6 +12,16 @@ const ArticlesContainer = styled.div`
   flex-direction: column;
   align-items: center;
   min-height: 100%;
+`;
+
+const ControlsContainer = styled.div`
+  background: rgba(239, 153, 153, 0.531);
+  margin: 0.5rem;
+  padding: 1rem;
+
+  .link {
+    padding: 5px;
+  }
 `;
 
 class Articles extends Component {
@@ -82,7 +93,16 @@ class Articles extends Component {
     } else
       return (
         <ArticlesContainer>
-          <ArticleControls handlePageOptions={this.handlePageOptions} />
+          <ControlsContainer>
+            <Link to="top">Top</Link>
+            <Link to="popular">Popular</Link>
+            <Link to="new">New</Link>
+          </ControlsContainer>
+          <ArticleControls
+            handlePageOptions={this.handlePageOptions}
+            currentPage={this.state.p}
+            currentLimit={this.state.Limit}
+          />
           <main>
             {this.state.articles.map((article) => {
               return <ArticleCard key={article.article_id} article={article} />;
