@@ -73,7 +73,6 @@ class Articles extends Component {
   }
 
   handlePageOptions = (options) => {
-    console.log(options);
     this.setState(options);
   };
 
