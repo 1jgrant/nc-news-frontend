@@ -25,15 +25,13 @@ const ErrorPage = (props) => {
     error: { status, msg },
     isValidPath,
   } = props;
-  console.log(props);
-  let clientMessage = msg;
-  if (!isValidPath) {
-    clientMessage = '404';
-  }
+  const clientMessage = isValidPath
+    ? { status, msg }
+    : { status: 404, msg: 'Invalid url' };
   return (
     <ErrorContainer className="ErrorContainer">
-      <h1>{status}</h1>
-      <h2>{clientMessage}</h2>
+      <h1>{clientMessage.status}</h1>
+      <h2>{clientMessage.msg}</h2>
     </ErrorContainer>
   );
 };
