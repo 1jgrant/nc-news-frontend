@@ -22,7 +22,6 @@ class CommentAdder extends Component {
   };
 
   handleSubmit = (event) => {
-    console.log('handleSubmit');
     event.preventDefault();
     const comment = { ...this.state, username: this.props.username };
     API.postComment(comment, this.props.article_id).then((newComment) => {
@@ -32,7 +31,6 @@ class CommentAdder extends Component {
   };
 
   handleChange = (event) => {
-    console.log('handleChange');
     this.setState({ body: event.target.value });
   };
 

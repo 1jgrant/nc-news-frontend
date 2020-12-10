@@ -31,7 +31,19 @@ class Comments extends Component {
     });
   };
 
+  handleDeleteComment = (comment_id) => {
+    API.deleteComment(comment_id).then(() => {
+      this.setState((currentState) => {
+        const filteredComments = currentState.comments.filter((comment) => {
+          return comment.comment_id !== comment_id;
+        });
+        return { comments: filteredComments };
+      });
+    });
+  };
+
   render() {
+    console.log('comments>>', this.props.username);
     return (
       <CommentsContainer>
         <CommentAdder
@@ -43,7 +55,14 @@ class Comments extends Component {
           <Loader />
         ) : (
           this.state.comments.map((comment) => {
-            return <CommentCard key={comment.comment_id} comment={comment} />;
+            return (
+              <CommentCard
+                key={comment.comment_id}
+                comment={comment}
+                username={this.props.username}
+                handleDeleteComment={this.handleDeleteComment}
+              />
+            );
           })
         )}
       </CommentsContainer>

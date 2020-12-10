@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from '@reach/router';
 import ArticleControls from './ArticleControls';
 import ArticleCard from './ArticleCard';
 import styled from 'styled-components';
@@ -30,7 +29,6 @@ class Articles extends Component {
       this.props.topic_name !== prevProps.topic_name ||
       this.props['*'] !== prevProps['*']
     ) {
-      console.log('in logic');
       API.getArticles(this.props.topic_name, this.props['*']).then(
         (articles) => {
           this.setState({ articles, isLoading: false });

@@ -67,6 +67,7 @@ class SingleArticle extends Component {
           <Loader />
         </ContentContainer>
       );
+    console.log('singleAricle>>', this.props.username);
     return (
       <ContentContainer>
         <ArticleContainer>

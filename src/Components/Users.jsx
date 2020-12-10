@@ -3,7 +3,12 @@ import * as API from '../API';
 
 class Users extends Component {
   state = {
-    currentUser: { avatar_url: '', name: '', username: '' },
+    currentUser: {
+      avatar_url:
+        'https://vignette.wikia.nocookie.net/mrmen/images/d/d6/Mr-Tickle-9a.png/revision/latest?cb=20180127221953',
+      name: 'Tom Tickle',
+      username: 'tickle122',
+    },
     users: [],
   };
 

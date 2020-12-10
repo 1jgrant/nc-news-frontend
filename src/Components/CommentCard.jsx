@@ -19,14 +19,7 @@ const CommentCardHeader = styled.div``;
 const CommentBody = styled.p``;
 
 const CommentCard = (props) => {
-  const {
-    comment_id,
-    votes,
-    created_at,
-    author,
-    body,
-    since_posted,
-  } = props.comment;
+  const { comment_id, votes, author, body, since_posted } = props.comment;
   return (
     <CommentCardContainer>
       <Votes comment_id={comment_id} votes={votes} />
@@ -36,7 +29,13 @@ const CommentCard = (props) => {
             <span>{author}</span>
           </Link>
           <span>{since_posted}</span>
+          {props.username === author ? (
+            <button onClick={() => props.handleDeleteComment(comment_id)}>
+              delete
+            </button>
+          ) : null}
         </CommentCardHeader>
+
         <CommentBody>{body}</CommentBody>
       </CommentCardContent>
     </CommentCardContainer>

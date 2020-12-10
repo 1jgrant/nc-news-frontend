@@ -65,3 +65,7 @@ export const postComment = (comment, article_id) => {
       return formatCreatedAt([data.newComment])[0];
     });
 };
+
+export const deleteComment = (comment_id) => {
+  return ncNewsAPI.delete(`/comments/${comment_id}`);
+};

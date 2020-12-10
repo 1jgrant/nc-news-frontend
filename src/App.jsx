@@ -24,7 +24,12 @@ const ContentContainer = styled.main`
 class App extends Component {
   state = {
     topic: 'all',
-    currentUser: { avatar_url: '', name: '', username: '' },
+    currentUser: {
+      avatar_url:
+        'https://vignette.wikia.nocookie.net/mrmen/images/d/d6/Mr-Tickle-9a.png/revision/latest?cb=20180127221953',
+      name: 'Tom Tickle',
+      username: 'tickle122',
+    },
   };
 
   updateUser = (updatedUser) => {
@@ -34,6 +39,7 @@ class App extends Component {
   render() {
     const { topic } = this.state;
     const username = this.state.currentUser.username;
+    console.log('app>>', username);
     return (
       <div>
         <HeaderContainer>
