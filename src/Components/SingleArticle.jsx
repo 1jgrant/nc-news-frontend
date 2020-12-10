@@ -4,6 +4,7 @@ import Votes from './Votes';
 import Comments from './Comments';
 import * as API from '../API';
 import Loader from './Loader';
+import ErrorPage from './ErrorPage';
 
 const ContentContainer = styled.div`
   display: flex;
@@ -43,12 +44,28 @@ class SingleArticle extends Component {
   state = {
     article: {},
     isLoading: true,
+    hasError: false,
+    error: {},
   };
 
   componentDidMount() {
-    API.getArticle(this.props.article_id).then((article) => {
-      this.setState({ article, isLoading: false });
-    });
+    API.getArticle(this.props.article_id)
+      .then((article) => {
+        this.setState({ article, isLoading: false });
+      })
+      .catch((err) => {
+        const {
+          response: {
+            status,
+            data: { msg },
+          },
+        } = err;
+        this.setState({
+          error: { status, msg },
+          hasError: true,
+          isLoading: false,
+        });
+      });
   }
 
   render() {
@@ -61,33 +78,36 @@ class SingleArticle extends Component {
       since_posted,
       article_id,
     } = this.state.article;
-    if (this.state.isLoading)
+    const { isLoading, hasError, error } = this.state;
+    if (hasError) {
+      return <ErrorPage error={error} />;
+    } else if (isLoading) {
       return (
         <ContentContainer>
           <Loader />
         </ContentContainer>
       );
-    console.log('singleAricle>>', this.props.username);
-    return (
-      <ContentContainer>
-        <ArticleContainer>
-          <Votes article_id={article_id} votes={votes} />
-          <ArticleContent>
-            <ArticleHeader>
-              <h1>{title}</h1>
-              <span>
-                posted in {topic} by {author} {since_posted}
-              </span>
-            </ArticleHeader>
-            <ArticleBody>{body}</ArticleBody>
-          </ArticleContent>
-        </ArticleContainer>
-        <Comments
-          article_id={this.props.article_id}
-          username={this.props.username}
-        />
-      </ContentContainer>
-    );
+    } else
+      return (
+        <ContentContainer>
+          <ArticleContainer>
+            <Votes article_id={article_id} votes={votes} />
+            <ArticleContent>
+              <ArticleHeader>
+                <h1>{title}</h1>
+                <span>
+                  posted in {topic} by {author} {since_posted}
+                </span>
+              </ArticleHeader>
+              <ArticleBody>{body}</ArticleBody>
+            </ArticleContent>
+          </ArticleContainer>
+          <Comments
+            article_id={this.props.article_id}
+            username={this.props.username}
+          />
+        </ContentContainer>
+      );
   }
 }
 

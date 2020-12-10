@@ -23,11 +23,11 @@ const ErrorContainer = styled.div`
 const ErrorPage = (props) => {
   const {
     error: { status, msg },
-    isValidPath,
+    isInvalidPath,
   } = props;
-  const clientMessage = isValidPath
-    ? { status, msg }
-    : { status: 404, msg: 'Invalid url' };
+  const clientMessage = isInvalidPath
+    ? { status: 404, msg: 'Invalid url' }
+    : { status, msg };
   return (
     <ErrorContainer className="ErrorContainer">
       <h1>{clientMessage.status}</h1>

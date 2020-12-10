@@ -56,11 +56,12 @@ class Articles extends Component {
   }
 
   render() {
-    //console.log(this.props);
-    const isValidPath = ['', 'top', 'popular', 'new'].includes(this.props['*']);
+    const isInvalidPath = !['', 'top', 'popular', 'new'].includes(
+      this.props['*']
+    );
     const { hasError, error, isLoading } = this.state;
-    if (!isValidPath || hasError) {
-      return <ErrorPage error={error} isValidPath={isValidPath} />;
+    if (isInvalidPath || hasError) {
+      return <ErrorPage error={error} isInvalidPath={isInvalidPath} />;
     } else if (isLoading) {
       return (
         <ArticlesContainer>

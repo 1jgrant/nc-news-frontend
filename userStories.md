@@ -15,9 +15,9 @@
 
 **Error-handling: As a user, I should...**
 
-10. see a 404 error if I go on a non-existent path/a path for a non-existent article/topic.
-11. see a 400 error if I go on a invalid article ID.
-12. not be allowed to post a comment if I have not filled in all of the form boxes.
+10. ~~see a 404 error if I go on a non-existent path/a path for a non-existent article/topic.~~
+11. ~~see a 400 error if I go on a invalid article ID.~~
+12. ~~not be allowed to post a comment if I have not filled in all of the form boxes.~~
 
 **As a hiring partner, I should be able to...**
 
