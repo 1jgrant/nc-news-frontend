@@ -5,9 +5,9 @@ import { Link } from '@reach/router';
 
 const CommentCardContainer = styled.div`
   display: flex;
-  background: rgba(79, 127, 195, 0.607);
+
   margin: 1rem;
-  width: 60vw;
+  width: 80vw;
 `;
 
 const CommentCardContent = styled.div`

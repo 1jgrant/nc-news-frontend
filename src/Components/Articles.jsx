@@ -122,33 +122,30 @@ class Articles extends Component {
     const { hasError, error, isLoading } = this.state;
     if (isInvalidPath || hasError) {
       return <ErrorPage error={error} isInvalidPath={isInvalidPath} />;
-    } else if (isLoading) {
-      return (
-        <ArticlesContainer>
+    }
+    return (
+      <ArticlesContainer>
+        <ControlsContainer>
+          <div>
+            <Link className="link" to="top">
+              <FontAwesomeIcon className="sortSelect" icon="trophy" /> Top
+            </Link>
+            <Link className="link" to="popular">
+              <FontAwesomeIcon className="sortSelect" icon="fire" /> Popular
+            </Link>
+            <Link className="link" to="new">
+              <FontAwesomeIcon className="sortSelect" icon="clock" /> New
+            </Link>
+          </div>
+          <OptionControls
+            handlePageOptions={this.handlePageOptions}
+            currentPage={this.state.p}
+            currentLimit={this.state.Limit}
+          />
+        </ControlsContainer>
+        {isLoading ? (
           <Loader />
-        </ArticlesContainer>
-      );
-    } else
-      return (
-        <ArticlesContainer>
-          <ControlsContainer>
-            <div>
-              <Link className="link" to="top">
-                <FontAwesomeIcon className="sortSelect" icon="trophy" /> Top
-              </Link>
-              <Link className="link" to="popular">
-                <FontAwesomeIcon className="sortSelect" icon="fire" /> Popular
-              </Link>
-              <Link className="link" to="new">
-                <FontAwesomeIcon className="sortSelect" icon="clock" /> New
-              </Link>
-            </div>
-            <OptionControls
-              handlePageOptions={this.handlePageOptions}
-              currentPage={this.state.p}
-              currentLimit={this.state.Limit}
-            />
-          </ControlsContainer>
+        ) : (
           <main>
             {this.state.articles.map((article) => {
               return (
@@ -161,8 +158,9 @@ class Articles extends Component {
               );
             })}
           </main>
-        </ArticlesContainer>
-      );
+        )}
+      </ArticlesContainer>
+    );
   }
 }
 

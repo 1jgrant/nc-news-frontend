@@ -17,6 +17,7 @@ import {
   faClock,
   faAngleUp,
   faAngleDown,
+  faTrash,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 library.add(
@@ -26,7 +27,8 @@ library.add(
   faTrophy,
   faFire,
   faClock,
-  faAngleUp
+  faAngleUp,
+  faTrash
 );
 
 const HeaderContainer = styled.div`

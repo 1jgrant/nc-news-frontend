@@ -12,34 +12,29 @@ const ContentContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 60vw;
-  background: rgba(176, 184, 176, 0.329);
+  width: 100vw;
 `;
 
 const ArticleContainer = styled.div`
   display: flex;
-  background: rgba(219, 217, 217, 0.661);
+
   padding: 10px;
-  width: 60vw;
+  width: 100%100vw;
   margin: 20px;
 `;
 
 const ArticleHeader = styled.div`
-  background: rgba(191, 191, 191, 0.922);
   h1 {
     margin-bottom: 0rem;
   }
 `;
 
 const ArticleContent = styled.div`
-  background-color: rgba(147, 145, 145, 0.565);
   padding-left: 1rem;
   padding-right: 3rem;
 `;
 
-const ArticleBody = styled.p`
-  background-color: rgba(191, 191, 191, 0.922);
-`;
+const ArticleBody = styled.p``;
 
 class SingleArticle extends Component {
   state = {

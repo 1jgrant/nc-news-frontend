@@ -29,8 +29,8 @@ class Topics extends Component {
   };
 
   render() {
-    console.log('topics props>>', this.props);
-    console.log('topics state>>', this.state);
+    // console.log('topics props>>', this.props);
+    // console.log('topics state>>', this.state);
     const { topics, currentTopic } = this.state;
     return (
       <div>

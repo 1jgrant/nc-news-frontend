@@ -9,7 +9,6 @@ const CommentsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  background: rgba(124, 145, 251, 0.819);
   flex-grow: 0;
 `;
 
