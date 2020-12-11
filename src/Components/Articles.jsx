@@ -37,7 +37,14 @@ class Articles extends Component {
 
   componentDidMount() {
     const { limit, p } = this.state;
-    API.getArticles(this.props.topic_name, this.props['*'], limit, p)
+    const { selectedAuthor } = this.props;
+    API.getArticles(
+      this.props.topic_name,
+      this.props['*'],
+      limit,
+      p,
+      selectedAuthor
+    )
       .then((articles) => {
         this.setState({ articles, isLoading: false });
       })
@@ -58,17 +65,22 @@ class Articles extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { limit, p } = this.state;
+    const { selectedAuthor } = this.props;
     if (
       this.props.topic_name !== prevProps.topic_name ||
       this.props['*'] !== prevProps['*'] ||
       limit !== prevState.limit ||
       p !== prevState.p
     ) {
-      API.getArticles(this.props.topic_name, this.props['*'], limit, p).then(
-        (articles) => {
-          this.setState({ articles, isLoading: false });
-        }
-      );
+      API.getArticles(
+        this.props.topic_name,
+        this.props['*'],
+        limit,
+        p,
+        selectedAuthor
+      ).then((articles) => {
+        this.setState({ articles, isLoading: false });
+      });
     }
   }
 
@@ -88,6 +100,7 @@ class Articles extends Component {
   };
 
   render() {
+    console.log(this.props['*']);
     const isInvalidPath = !['', 'top', 'popular', 'new'].includes(
       this.props['*']
     );
