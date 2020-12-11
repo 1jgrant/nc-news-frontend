@@ -67,7 +67,7 @@ const ArticleCard = (props) => {
           </span>
         </ArticleCardHeader>
         <ArticleBody>{body}</ArticleBody>
-        <Link className="comments" to="/">
+        <Link className="comments" to={`/articles/${article_id}`}>
           {comment_count} comments
         </Link>
       </ArticleCardContent>

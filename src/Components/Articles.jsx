@@ -81,6 +81,7 @@ class Articles extends Component {
       this.props['*']
     );
     const { hasError, error, isLoading } = this.state;
+    const { topic_name } = this.props;
     if (isInvalidPath || hasError) {
       return <ErrorPage error={error} isInvalidPath={isInvalidPath} />;
     } else if (isLoading) {
@@ -92,6 +93,9 @@ class Articles extends Component {
     } else
       return (
         <ArticlesContainer>
+          <Link to={`/submit`} state={{ linkedFrom: topic_name }}>
+            POST
+          </Link>
           <ControlsContainer>
             <Link to="top">Top</Link>
             <Link to="popular">Popular</Link>

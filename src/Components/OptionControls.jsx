@@ -26,10 +26,10 @@ class OptionControls extends Component {
   render() {
     return (
       <ControlsContainer>
-        <form onChange={this.handleChange}>
+        <form>
           <label>
             View
-            <select name="limit" defaultValue={10}>
+            <select name="limit" defaultValue={10} onChange={this.handleChange}>
               <option value={5}>5</option>
               <option value={10}>10</option>
               <option value={20}>20</option>
@@ -41,10 +41,10 @@ class OptionControls extends Component {
             <input
               type="number"
               name="p"
-              defaultValue={1}
               step={1}
               min={1}
               value={this.state.p}
+              onChange={this.handleChange}
             ></input>
           </label>
         </form>

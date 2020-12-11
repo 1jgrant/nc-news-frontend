@@ -5,6 +5,7 @@ import Topics from './Components/Topics';
 import Users from './Components/Users';
 import Articles from './Components/Articles';
 import SingleArticle from './Components/SingleArticle';
+import ArticleAdder from './Components/ArticleAdder';
 import styled from 'styled-components';
 
 const HeaderContainer = styled.div`
@@ -58,6 +59,7 @@ class App extends Component {
         </HeaderContainer>
         <ContentContainer className="ContentContainer">
           <Router className="Router">
+            <ArticleAdder path="/submit" username={username} />
             <Articles path="/*" />
             <Articles path="/articles/topics/:topic_name/*" />
             <SingleArticle path="/articles/:article_id/*" username={username} />
