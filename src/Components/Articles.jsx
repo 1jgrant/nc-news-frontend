@@ -72,7 +72,9 @@ class Articles extends Component {
       limit !== prevState.limit ||
       p !== prevState.p
     ) {
-      this.setState({ isLoading: true }, () => {
+      // only render the loading page if the topic or custom query has changed
+      const shouldLoad = limit === prevState.limit && p === prevState.p;
+      this.setState({ isLoading: shouldLoad }, () => {
         API.getArticles(
           this.props.topic_name,
           this.props['*'],
