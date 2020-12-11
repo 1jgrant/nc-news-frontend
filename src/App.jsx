@@ -60,6 +60,9 @@ class App extends Component {
             <h1>NC News</h1>
           </Link>
           <Topics topic={topic} updateTopic={this.updateTopic} />
+          <Link to={`/submit`} state={{ linkedFrom: topic }}>
+            POST
+          </Link>
           <Users username={username} updateUser={this.updateUser} />
         </HeaderContainer>
         <ContentContainer className="ContentContainer">
