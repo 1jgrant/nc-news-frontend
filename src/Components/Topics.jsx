@@ -34,7 +34,7 @@ class Topics extends Component {
     const { topics, currentTopic } = this.state;
     return (
       <div>
-        <span>TOPIC</span>
+        {/* <span>TOPIC</span> */}
         <select onChange={this.handleTopicChange} value={currentTopic}>
           <option key="all" value={''}>
             ALL

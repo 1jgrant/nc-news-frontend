@@ -30,7 +30,7 @@ class Users extends Component {
     return (
       <div>
         <form>
-          <span>Current User</span>
+          {/* <span>Current User</span> */}
           <select onChange={this.handleChange}>
             {this.state.users.map((user) => {
               return (

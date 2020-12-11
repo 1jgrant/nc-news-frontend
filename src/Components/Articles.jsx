@@ -6,6 +6,8 @@ import styled from 'styled-components';
 import Loader from './Loader';
 import ErrorPage from './ErrorPage';
 import * as API from '../API';
+import '../App.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ArticlesContainer = styled.div`
   display: flex;
@@ -15,12 +17,18 @@ const ArticlesContainer = styled.div`
 `;
 
 const ControlsContainer = styled.div`
-  background: rgba(239, 153, 153, 0.531);
-  margin: 0.5rem;
-  padding: 1rem;
-
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: rgb(237, 246, 249);
+  margin: 0.5vh 0 0.5vh 0;
+  padding: 1vh;
+  font-size: 0.8em;
+  width: 100%;
+  color: rgb(0, 109, 119);
   .link {
-    padding: 5px;
+    color: rgb(0, 109, 119);
+    padding: 0.4em;
   }
 `;
 
@@ -120,15 +128,23 @@ class Articles extends Component {
       return (
         <ArticlesContainer>
           <ControlsContainer>
-            <Link to="top">Top</Link>
-            <Link to="popular">Popular</Link>
-            <Link to="new">New</Link>
+            <div>
+              <Link className="link" to="top">
+                <FontAwesomeIcon className="sortSelect" icon="trophy" /> Top
+              </Link>
+              <Link className="link" to="popular">
+                <FontAwesomeIcon className="sortSelect" icon="fire" /> Popular
+              </Link>
+              <Link className="link" to="new">
+                <FontAwesomeIcon className="sortSelect" icon="clock" /> New
+              </Link>
+            </div>
+            <OptionControls
+              handlePageOptions={this.handlePageOptions}
+              currentPage={this.state.p}
+              currentLimit={this.state.Limit}
+            />
           </ControlsContainer>
-          <OptionControls
-            handlePageOptions={this.handlePageOptions}
-            currentPage={this.state.p}
-            currentLimit={this.state.Limit}
-          />
           <main>
             {this.state.articles.map((article) => {
               return (

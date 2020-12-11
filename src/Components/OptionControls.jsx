@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-const ControlsContainer = styled.div`
-  background: rgba(239, 153, 153, 0.531);
-  margin: 0.5rem;
-  padding: 1rem;
-
-  .link {
-    padding: 5px;
+const OptionsContainer = styled.div`
+  display: flex;
+  flex-wrap: nowrap;
+  /* align-items: center; */
+  padding: 0;
+  input {
+    max-width: 25px;
   }
 `;
 
@@ -25,7 +25,7 @@ class OptionControls extends Component {
 
   render() {
     return (
-      <ControlsContainer>
+      <OptionsContainer>
         <form>
           <label>
             View
@@ -48,7 +48,7 @@ class OptionControls extends Component {
             ></input>
           </label>
         </form>
-      </ControlsContainer>
+      </OptionsContainer>
     );
   }
 }

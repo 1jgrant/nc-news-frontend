@@ -8,28 +8,52 @@ import SingleArticle from './Components/SingleArticle';
 import SingleUser from './Components/SingleUser';
 import ArticleAdder from './Components/ArticleAdder';
 import styled from 'styled-components';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import {
+  faPlusSquare,
+  faEdit,
+  faTrophy,
+  faFire,
+  faClock,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+library.add(faPlusSquare, faEdit, faTrophy, faFire, faClock);
 
 const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-around;
-  background-color: grey;
-  h1 {
-    color: #000000;
+  align-items: center;
+  min-height: 6vh;
+  background-color: rgb(237, 246, 249);
+  .link {
+    text-decoration: none;
+  }
+  .home {
+    background: transparent;
+    color: rgb(0, 109, 119);
+    h1 {
+      font-size: 2em;
+      margin: 2px 5px 2px 5px;
+    }
+  }
+  .post {
+    font-size: 1.5em;
+    color: rgb(0, 109, 119);
   }
 `;
 
-const ContentContainer = styled.main`
-  display: flex;
-  justify-content: center;
-  min-height: 600px;
-  .Router {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    min-height: 600px;
-  }
-`;
+// const ContentContainer = styled.main`
+//   display: flex;
+//   justify-content: center;
+//   min-height: 90vh;
+//   .Router {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     width: 100%;
+//     min-height: 600px;
+//   }
+// `;
 
 class App extends Component {
   state = {
@@ -58,30 +82,25 @@ class App extends Component {
     const { topic } = this.state;
     const username = this.state.currentUser.username;
     return (
-      <div>
+      <body className="App">
         <HeaderContainer>
-          <Link to="/">
-            <h1 onClick={this.handleHome}>NC News</h1>
+          <Link className="link home" to="/">
+            <h1 onClick={this.handleHome}>NCN</h1>
           </Link>
           <Topics topic={topic} updateTopic={this.updateTopic} />
-          <Link to={`/submit`} state={{ linkedFrom: topic }}>
-            POST
+          <Link className="link" to={`/submit`} state={{ linkedFrom: topic }}>
+            <FontAwesomeIcon className="post" icon={faEdit} />
           </Link>
           <Users username={username} updateUser={this.updateUser} />
         </HeaderContainer>
-        <ContentContainer className="ContentContainer">
-          <Router className="Router">
-            <ArticleAdder path="/submit" username={username} />
-            <Articles path="/*" username={username} />
-            <Articles
-              path="/articles/topics/:topic_name/*"
-              username={username}
-            />
-            <SingleArticle path="/articles/:article_id/*" username={username} />
-            <SingleUser path="/users/:username/*" username={username} />
-          </Router>
-        </ContentContainer>
-      </div>
+        <Router className="Router">
+          <ArticleAdder path="/submit" username={username} />
+          <Articles path="/*" username={username} />
+          <Articles path="/articles/topics/:topic_name/*" username={username} />
+          <SingleArticle path="/articles/:article_id/*" username={username} />
+          <SingleUser path="/users/:username/*" username={username} />
+        </Router>
+      </body>
     );
   }
 }
