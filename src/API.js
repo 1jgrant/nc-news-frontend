@@ -78,6 +78,10 @@ export const deleteComment = (comment_id) => {
   return ncNewsAPI.delete(`/comments/${comment_id}`);
 };
 
+export const deleteArticle = (article_id) => {
+  return ncNewsAPI.delete(`/articles/${article_id}`);
+};
+
 export const postArticle = (submittedArticle) => {
   return ncNewsAPI.post(`/articles`, submittedArticle).then(({ data }) => {
     return formatCreatedAt([data.newArticle])[0];

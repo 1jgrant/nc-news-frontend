@@ -60,8 +60,11 @@ class App extends Component {
         <ContentContainer className="ContentContainer">
           <Router className="Router">
             <ArticleAdder path="/submit" username={username} />
-            <Articles path="/*" />
-            <Articles path="/articles/topics/:topic_name/*" />
+            <Articles path="/*" username={username} />
+            <Articles
+              path="/articles/topics/:topic_name/*"
+              username={username}
+            />
             <SingleArticle path="/articles/:article_id/*" username={username} />
           </Router>
         </ContentContainer>

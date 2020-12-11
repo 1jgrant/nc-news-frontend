@@ -68,6 +68,17 @@ class SingleArticle extends Component {
       });
   }
 
+  handleDeleteSingleArticle = (article_id) => {
+    API.deleteArticle(article_id).then(() => {
+      this.setState((currentState) => {
+        const filteredArticles = currentState.articles.filter((article) => {
+          return article.article_id !== article_id;
+        });
+        return { articles: filteredArticles };
+      });
+    });
+  };
+
   render() {
     const {
       title,
@@ -79,6 +90,7 @@ class SingleArticle extends Component {
       article_id,
     } = this.state.article;
     const { isLoading, hasError, error } = this.state;
+    const { username } = this.props;
     if (hasError) {
       return <ErrorPage error={error} />;
     } else if (isLoading) {
@@ -101,6 +113,13 @@ class SingleArticle extends Component {
               </ArticleHeader>
               <ArticleBody>{body}</ArticleBody>
             </ArticleContent>
+            {username === author ? (
+              <button
+                onClick={() => this.handleDeleteSingleArticle(article_id)}
+              >
+                delete
+              </button>
+            ) : null}
           </ArticleContainer>
           <Comments
             article_id={this.props.article_id}

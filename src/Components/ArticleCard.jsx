@@ -65,6 +65,11 @@ const ArticleCard = (props) => {
           <span>
             posted in {topic} by {author} {since_posted}
           </span>
+          {props.username === author ? (
+            <button onClick={() => props.handleDeleteArticle(article_id)}>
+              delete
+            </button>
+          ) : null}
         </ArticleCardHeader>
         <ArticleBody>{body}</ArticleBody>
         <Link className="comments" to={`/articles/${article_id}`}>

@@ -76,6 +76,17 @@ class Articles extends Component {
     this.setState(options);
   };
 
+  handleDeleteArticle = (article_id) => {
+    API.deleteArticle(article_id).then(() => {
+      this.setState((currentState) => {
+        const filteredArticles = currentState.articles.filter((article) => {
+          return article.article_id !== article_id;
+        });
+        return { articles: filteredArticles };
+      });
+    });
+  };
+
   render() {
     const isInvalidPath = !['', 'top', 'popular', 'new'].includes(
       this.props['*']
@@ -108,7 +119,14 @@ class Articles extends Component {
           />
           <main>
             {this.state.articles.map((article) => {
-              return <ArticleCard key={article.article_id} article={article} />;
+              return (
+                <ArticleCard
+                  key={article.article_id}
+                  article={article}
+                  handleDeleteArticle={this.handleDeleteArticle}
+                  username={this.props.username}
+                />
+              );
             })}
           </main>
         </ArticlesContainer>

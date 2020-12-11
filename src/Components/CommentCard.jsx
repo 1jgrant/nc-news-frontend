@@ -35,7 +35,6 @@ const CommentCard = (props) => {
             </button>
           ) : null}
         </CommentCardHeader>
-
         <CommentBody>{body}</CommentBody>
       </CommentCardContent>
     </CommentCardContainer>
