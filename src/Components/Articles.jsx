@@ -72,14 +72,16 @@ class Articles extends Component {
       limit !== prevState.limit ||
       p !== prevState.p
     ) {
-      API.getArticles(
-        this.props.topic_name,
-        this.props['*'],
-        limit,
-        p,
-        selectedAuthor
-      ).then((articles) => {
-        this.setState({ articles, isLoading: false });
+      this.setState({ isLoading: true }, () => {
+        API.getArticles(
+          this.props.topic_name,
+          this.props['*'],
+          limit,
+          p,
+          selectedAuthor
+        ).then((articles) => {
+          this.setState({ articles, isLoading: false });
+        });
       });
     }
   }
@@ -100,12 +102,10 @@ class Articles extends Component {
   };
 
   render() {
-    console.log('articles>>', this.props);
     const isInvalidPath = !['', 'top', 'popular', 'new'].includes(
       this.props['*']
     );
     const { hasError, error, isLoading } = this.state;
-    const { topic_name } = this.props;
     if (isInvalidPath || hasError) {
       return <ErrorPage error={error} isInvalidPath={isInvalidPath} />;
     } else if (isLoading) {
