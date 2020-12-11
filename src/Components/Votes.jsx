@@ -16,6 +16,9 @@ const VotesContainer = styled.div`
     text-align: center;
     max-width: 10vw;
   }
+  .voteIcon {
+    pointer-events: none;
+  }
 `;
 
 class Votes extends Component {
@@ -28,20 +31,21 @@ class Votes extends Component {
     const { article_id, comment_id } = this.props;
     const { hasVoted, voteChange } = this.state;
     const targetComponent = { article_id, comment_id };
+    console.log('target', event.target);
+    console.log('targetVal', event.target.name);
     const buttonVal = Number(event.target.value);
     // compare the value of the button pressed to the current voteChange in state
     // if they are the same, remove that vote (reset) and set hasVoted to false
     // if they are not the same, check if there is already a vote that needs to be overwritten
     // if so, send the patch request 2* the button value
     const changeToMake =
-      buttonVal === voteChange
+      buttonVal === Number(voteChange)
         ? { voteChange: 0, patchChange: -buttonVal, hasVoted: false }
         : hasVoted === true
         ? { voteChange: buttonVal, patchChange: buttonVal * 2, hasVoted: true }
         : { voteChange: buttonVal, patchChange: buttonVal, hasVoted: true };
-
     API.updateVotes(targetComponent, changeToMake.patchChange).catch((err) => {
-      this.setState({ voteChange: 0, hasVoted: false });
+      this.setState({ voteChange: 0, hasVoted: false }, () => {});
     });
     this.setState({
       voteChange: changeToMake.voteChange,
@@ -54,12 +58,12 @@ class Votes extends Component {
     const { voteChange } = this.state;
     return (
       <VotesContainer>
-        <button onClick={this.handleVote} value={1}>
-          <FontAwesomeIcon className="vote" icon="angle-up" />
+        <button onClick={this.handleVote} value={1} name={1}>
+          <FontAwesomeIcon className="voteIcon" icon="angle-up" />
         </button>
         <span>{votes + Number(voteChange)}</span>
         <button onClick={this.handleVote} value={-1}>
-          <FontAwesomeIcon className="vote" icon="angle-down" />
+          <FontAwesomeIcon className="voteIcon" icon="angle-down" />
         </button>
       </VotesContainer>
     );
