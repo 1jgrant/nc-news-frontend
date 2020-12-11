@@ -22,10 +22,8 @@ class SingleUser extends Component {
     });
   }
 
-  componentDidUpdate() {}
-
   render() {
-    console.log(this.props);
+    console.log('singleUser>>', this.props);
     const { user, avatar_url, isLoading } = this.state;
     if (isLoading) {
       return <Loader />;

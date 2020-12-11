@@ -100,6 +100,7 @@ class Articles extends Component {
   };
 
   render() {
+    console.log('articles>>', this.props);
     const isInvalidPath = !['', 'top', 'popular', 'new'].includes(
       this.props['*']
     );
