@@ -34,9 +34,6 @@ class SingleUser extends Component {
       <div>
         <h1>{user}</h1>
         <img src={avatar_url} alt="user profile" />
-        {/* <Link to="top">Top</Link>
-        <Link to="popular">Popular</Link>
-        <Link to="new">New</Link> */}
         <Router>
           <Articles path="*" selectedAuthor={user} />
         </Router>
