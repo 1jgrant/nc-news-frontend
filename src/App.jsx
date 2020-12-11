@@ -33,7 +33,7 @@ const ContentContainer = styled.main`
 
 class App extends Component {
   state = {
-    topic: 'all',
+    topic: '',
     currentUser: {
       avatar_url:
         'https://vignette.wikia.nocookie.net/mrmen/images/d/d6/Mr-Tickle-9a.png/revision/latest?cb=20180127221953',
@@ -50,6 +50,10 @@ class App extends Component {
     this.setState({ topic: selectedTopic });
   };
 
+  handleHome = () => {
+    this.setState({ topic: '' });
+  };
+
   render() {
     const { topic } = this.state;
     const username = this.state.currentUser.username;
@@ -57,7 +61,7 @@ class App extends Component {
       <div>
         <HeaderContainer>
           <Link to="/">
-            <h1>NC News</h1>
+            <h1 onClick={this.handleHome}>NC News</h1>
           </Link>
           <Topics topic={topic} updateTopic={this.updateTopic} />
           <Link to={`/submit`} state={{ linkedFrom: topic }}>
