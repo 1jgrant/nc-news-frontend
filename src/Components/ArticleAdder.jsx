@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { navigate } from '@reach/router';
+import Loader from './Loader';
+import ErrorBox from './ErrorBox';
 import * as API from '../API';
 import styled from 'styled-components';
 
@@ -18,12 +20,20 @@ const AdderContainer = styled.div`
 `;
 
 class ArticleAdder extends Component {
-  state = { topic: '', topics: [], title: '', body: '' };
+  state = {
+    topic: '',
+    topics: [],
+    title: '',
+    body: '',
+    error: {},
+    hasError: false,
+    isLoading: true,
+  };
 
   componentDidMount() {
     const { linkedFrom } = this.props.location.state;
     API.getTopics().then((topics) => {
-      this.setState({ topics: topics, topic: linkedFrom });
+      this.setState({ topics: topics, topic: linkedFrom, isLoading: false });
     });
   }
 
@@ -41,7 +51,17 @@ class ArticleAdder extends Component {
         navigate(`/articles/${newArticle.article_id}`);
       })
       .catch((err) => {
-        console.log(err);
+        const {
+          response: {
+            status,
+            data: { msg },
+          },
+        } = err;
+        this.setState({
+          error: { status, msg },
+          hasError: true,
+          isLoading: false,
+        });
       });
   };
 
@@ -50,9 +70,13 @@ class ArticleAdder extends Component {
   };
 
   render() {
-    const { topics, title, body } = this.state;
+    const { topics, title, body, isLoading, hasError, error } = this.state;
     const { linkedFrom } = this.props.location.state;
     const defaultTopic = linkedFrom ? linkedFrom : 'default';
+
+    if (isLoading) {
+      return <Loader />;
+    }
     return (
       <AdderContainer>
         <h1>Post to {defaultTopic}</h1>
@@ -98,6 +122,7 @@ class ArticleAdder extends Component {
           </label>
           <button type="submit">POST</button>
         </form>
+        {hasError ? <ErrorBox error={error} /> : null}
       </AdderContainer>
     );
   }
