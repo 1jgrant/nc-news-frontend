@@ -33,6 +33,6 @@
 
 18. navigate over pages of articles (e.g. using pagination or infinite scroll).
 19. navigate over pages of comments (e.g. using pagination or infinite scroll).
-20. view a list of all articles written by any specific user.
+20. ~~view a list of all articles written by any specific user.~~
 21. ~~post a new article to an existing topic.~~
-22. delete my own articles.
+22. ~~delete my own articles.~~
