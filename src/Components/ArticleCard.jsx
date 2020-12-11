@@ -2,18 +2,17 @@ import { Link } from '@reach/router';
 import React from 'react';
 import styled from 'styled-components';
 import Votes from './Votes';
+import '../App.css';
 
 const ArticleCardContainer = styled.div`
   display: flex;
-  background: rgba(152, 154, 152, 0.479);
-  padding: 1px;
-  margin: 10px;
-  width: 60vw;
-  max-height: 200px;
-
+  background: rgba(152, 154, 152, 0.168);
+  padding: 0.5vh 1vw 0.5vh 1vw;
+  margin: 0.5vh 0 0.5vh 0;
+  width: 100%;
+  max-height: 20vh;
   div {
     background: rgba(176, 178, 176, 0.764);
-    margin: 5px;
   }
 `;
 const ArticleCardContent = styled.div`
@@ -27,8 +26,9 @@ const ArticleCardContent = styled.div`
 `;
 const ArticleCardHeader = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   h4 {
     margin: 0.3rem;
   }
@@ -59,12 +59,12 @@ const ArticleCard = (props) => {
       <Votes article_id={article_id} votes={votes} />
       <ArticleCardContent>
         <ArticleCardHeader>
-          <Link to={`/articles/${article_id}`}>
+          <Link className="link" to={`/articles/${article_id}`}>
             <h4>{title}</h4>
           </Link>
           <span>
             posted in {topic} by{' '}
-            <Link className="author" to={`/users/${author}`}>
+            <Link className="link author" to={`/users/${author}`}>
               <span>{author}</span>
             </Link>{' '}
             {since_posted}
@@ -75,8 +75,8 @@ const ArticleCard = (props) => {
             </button>
           ) : null}
         </ArticleCardHeader>
-        <ArticleBody>{body}</ArticleBody>
-        <Link className="comments" to={`/articles/${article_id}`}>
+        {/* <ArticleBody>{body}</ArticleBody> */}
+        <Link className="link comments" to={`/articles/${article_id}`}>
           {comment_count} comments
         </Link>
       </ArticleCardContent>

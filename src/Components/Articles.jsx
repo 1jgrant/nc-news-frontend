@@ -14,6 +14,10 @@ const ArticlesContainer = styled.div`
   flex-direction: column;
   align-items: center;
   min-height: 100%;
+  width: 100vw;
+  /* main {
+    width: 100vw;
+  } */
 `;
 
 const ControlsContainer = styled.div`

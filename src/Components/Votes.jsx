@@ -1,11 +1,21 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as API from '../API';
 
 const VotesContainer = styled.div`
   display: flex;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  font-size: 1em;
+  button {
+    font-size: 1em;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    max-width: 10vw;
+  }
 `;
 
 class Votes extends Component {
@@ -45,11 +55,11 @@ class Votes extends Component {
     return (
       <VotesContainer>
         <button onClick={this.handleVote} value={1}>
-          ⬆
+          <FontAwesomeIcon className="vote" icon="angle-up" />
         </button>
         <span>{votes + Number(voteChange)}</span>
         <button onClick={this.handleVote} value={-1}>
-          ⬇
+          <FontAwesomeIcon className="vote" icon="angle-down" />
         </button>
       </VotesContainer>
     );

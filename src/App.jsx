@@ -15,9 +15,19 @@ import {
   faTrophy,
   faFire,
   faClock,
+  faAngleUp,
+  faAngleDown,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-library.add(faPlusSquare, faEdit, faTrophy, faFire, faClock);
+library.add(
+  faAngleDown,
+  faPlusSquare,
+  faEdit,
+  faTrophy,
+  faFire,
+  faClock,
+  faAngleUp
+);
 
 const HeaderContainer = styled.div`
   display: flex;
