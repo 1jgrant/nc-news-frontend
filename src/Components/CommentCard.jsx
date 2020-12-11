@@ -25,7 +25,7 @@ const CommentCard = (props) => {
       <Votes comment_id={comment_id} votes={votes} />
       <CommentCardContent>
         <CommentCardHeader>
-          <Link to={'/'}>
+          <Link className="author" to={`/users/${author}`}>
             <span>{author}</span>
           </Link>
           <span>{since_posted}</span>

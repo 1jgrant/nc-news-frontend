@@ -63,7 +63,11 @@ const ArticleCard = (props) => {
             <h4>{title}</h4>
           </Link>
           <span>
-            posted in {topic} by {author} {since_posted}
+            posted in {topic} by{' '}
+            <Link className="author" to={`/users/${author}`}>
+              <span>{author}</span>
+            </Link>{' '}
+            {since_posted}
           </span>
           {props.username === author ? (
             <button onClick={() => props.handleDeleteArticle(article_id)}>

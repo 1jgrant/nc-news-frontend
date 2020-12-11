@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { Link } from '@reach/router';
 import Votes from './Votes';
 import Comments from './Comments';
 import * as API from '../API';
@@ -108,7 +109,11 @@ class SingleArticle extends Component {
               <ArticleHeader>
                 <h1>{title}</h1>
                 <span>
-                  posted in {topic} by {author} {since_posted}
+                  posted in {topic} by{' '}
+                  <Link className="author" to={`/users/${author}`}>
+                    <span>{author}</span>
+                  </Link>{' '}
+                  {since_posted}
                 </span>
               </ArticleHeader>
               <ArticleBody>{body}</ArticleBody>

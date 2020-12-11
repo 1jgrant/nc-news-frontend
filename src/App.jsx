@@ -5,6 +5,7 @@ import Topics from './Components/Topics';
 import Users from './Components/Users';
 import Articles from './Components/Articles';
 import SingleArticle from './Components/SingleArticle';
+import SingleUser from './Components/SingleUser';
 import ArticleAdder from './Components/ArticleAdder';
 import styled from 'styled-components';
 
@@ -66,6 +67,7 @@ class App extends Component {
               username={username}
             />
             <SingleArticle path="/articles/:article_id/*" username={username} />
+            <SingleUser path="/users/:username" username={username} />
           </Router>
         </ContentContainer>
       </div>

@@ -5,7 +5,7 @@ const ncNewsAPI = axios.create({
   baseURL: 'https://jg-news-app.herokuapp.com/api',
 });
 
-export const getArticles = (topic_slug, filter, limit, p) => {
+export const getArticles = (topic_slug, filter, limit, p, author) => {
   const filters = {
     top: { sort_by: 'votes' },
     popular: { sort_by: 'comment_count' },
@@ -17,6 +17,7 @@ export const getArticles = (topic_slug, filter, limit, p) => {
         topic: topic_slug,
         limit,
         p,
+        author,
         ...filters[filter],
       },
     })
@@ -34,6 +35,12 @@ export const getTopics = () => {
 export const getUsers = () => {
   return ncNewsAPI.get('/users').then(({ data }) => {
     return data.users;
+  });
+};
+
+export const getUser = (username) => {
+  return ncNewsAPI.get(`/users/${username}`).then(({ data }) => {
+    return data.user;
   });
 };
 
