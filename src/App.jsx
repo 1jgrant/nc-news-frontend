@@ -46,6 +46,10 @@ class App extends Component {
     this.setState({ currentUser: updatedUser });
   };
 
+  updateTopic = (selectedTopic) => {
+    this.setState({ topic: selectedTopic });
+  };
+
   render() {
     const { topic } = this.state;
     const username = this.state.currentUser.username;
@@ -55,7 +59,7 @@ class App extends Component {
           <Link to="/">
             <h1>NC News</h1>
           </Link>
-          <Topics topic={topic} />
+          <Topics topic={topic} updateTopic={this.updateTopic} />
           <Users username={username} updateUser={this.updateUser} />
         </HeaderContainer>
         <ContentContainer className="ContentContainer">

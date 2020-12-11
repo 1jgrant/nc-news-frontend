@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Loader from './Loader';
 import Articles from './Articles';
-import { Router, Link } from '@reach/router';
+import { Router } from '@reach/router';
 import * as API from '../API';
 
 class SingleUser extends Component {
