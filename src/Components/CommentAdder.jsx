@@ -5,15 +5,21 @@ import * as API from '../API';
 const CommentContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   width: 100vw;
+  form {
+    display: flex;
+    flex-direction: column;
+  }
   textArea {
-    width: 50%;
+    width: 80vw;
+    height: 3em;
+    border: solid 1px rgba(110, 110, 110, 0.607);
+    border-radius: 3px;
   }
   button {
-    width: 50px;
-    background: rgba(0, 128, 0, 0.463);
+    align-self: flex-end;
+    margin: 2px 0 0 0;
   }
 `;
 
@@ -36,19 +42,19 @@ class CommentAdder extends Component {
   };
 
   render() {
+    const { username } = this.props;
     return (
       <CommentContainer>
         <form onSubmit={this.handleSubmit}>
-          <label>
-            <textarea
-              type="text"
-              name="body"
-              className="commentInput"
-              value={this.state.body}
-              onChange={this.handleChange}
-              required
-            ></textarea>
-          </label>
+          <textarea
+            type="text"
+            name="body"
+            className="commentInput"
+            value={this.state.body}
+            onChange={this.handleChange}
+            placeholder={`Join the conversation ${username}...`}
+            required
+          ></textarea>
           <button type="submit">POST</button>
         </form>
       </CommentContainer>

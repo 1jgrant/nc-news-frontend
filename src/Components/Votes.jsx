@@ -8,9 +8,11 @@ const VotesContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-items: center;
+  min-width: 1.5em;
   font-size: 1em;
+  padding: 0;
   button {
-    font-size: 1em;
+    font-size: 0.9em;
     padding: 0;
     margin: 0;
     text-align: center;
@@ -31,8 +33,6 @@ class Votes extends Component {
     const { article_id, comment_id } = this.props;
     const { hasVoted, voteChange } = this.state;
     const targetComponent = { article_id, comment_id };
-    console.log('target', event.target);
-    console.log('targetVal', event.target.name);
     const buttonVal = Number(event.target.value);
     // compare the value of the button pressed to the current voteChange in state
     // if they are the same, remove that vote (reset) and set hasVoted to false
@@ -58,11 +58,11 @@ class Votes extends Component {
     const { voteChange } = this.state;
     return (
       <VotesContainer>
-        <button onClick={this.handleVote} value={1} name={1}>
+        <button className="up" onClick={this.handleVote} value={1} name={1}>
           <FontAwesomeIcon className="voteIcon" icon="angle-up" />
         </button>
-        <span>{votes + Number(voteChange)}</span>
-        <button onClick={this.handleVote} value={-1}>
+        <span className="score">{votes + Number(voteChange)}</span>
+        <button className="down" onClick={this.handleVote} value={-1}>
           <FontAwesomeIcon className="voteIcon" icon="angle-down" />
         </button>
       </VotesContainer>

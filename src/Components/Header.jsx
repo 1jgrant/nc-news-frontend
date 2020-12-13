@@ -6,13 +6,16 @@ import { Link } from '@reach/router';
 
 const HeaderContainer = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   background-color: rgba(128, 128, 128, 0.442);
   height: 5vh;
+  width: 100vw;
+  margin: 0;
   h1 {
     padding: 5px;
     margin: 5px;
     color: #000000;
+    align-self: flex-start;
   }
 `;
 

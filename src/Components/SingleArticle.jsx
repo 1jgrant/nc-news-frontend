@@ -1,40 +1,64 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import '../App.css';
 import { Link } from '@reach/router';
 import Votes from './Votes';
 import Comments from './Comments';
 import * as API from '../API';
 import Loader from './Loader';
 import ErrorPage from './ErrorPage';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   width: 100vw;
 `;
 
 const ArticleContainer = styled.div`
   display: flex;
-
-  padding: 10px;
-  width: 100%100vw;
-  margin: 20px;
-`;
-
-const ArticleHeader = styled.div`
-  h1 {
-    margin-bottom: 0rem;
+  justify-content: flex-start;
+  width: 100vw;
+  padding: 0.5vh 0vw 0.5vh 0vw;
+  margin: 3vh 0 0.5vh 0;
+  .votes {
+    margin: 0 0 0 2vw;
   }
 `;
 
 const ArticleContent = styled.div`
-  padding-left: 1rem;
-  padding-right: 3rem;
+  width: 100%;
+  padding: 0 2vw 0 2vw;
+  .articleDetails {
+    font-size: 0.8em;
+  }
 `;
 
-const ArticleBody = styled.p``;
+const ArticleHeader = styled.div`
+  display: grid;
+  grid-template-columns: auto 40px;
+  grid-template-rows: auto;
+  width: 100%;
+  margin: 0;
+  padding: 0 0 0.5vh 0;
+  h1 {
+    font-size: 1.4em;
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+  }
+  .delBox {
+    justify-self: end;
+    width: 40px;
+    .trashIcon {
+      pointer-events: none;
+    }
+  }
+`;
+
+const ArticleBody = styled.p`
+  padding: 0 5vw 0 0;
+`;
 
 class SingleArticle extends Component {
   state = {
@@ -99,27 +123,34 @@ class SingleArticle extends Component {
       return (
         <ContentContainer>
           <ArticleContainer>
-            <Votes article_id={article_id} votes={votes} />
+            <section className="votes">
+              <Votes article_id={article_id} votes={votes} />
+            </section>
             <ArticleContent>
               <ArticleHeader>
                 <h1>{title}</h1>
-                <span>
-                  posted in {topic} by{' '}
-                  <Link className="author" to={`/users/${author}`}>
-                    <span>{author}</span>
-                  </Link>{' '}
-                  {since_posted}
-                </span>
+                <div className="delBox">
+                  {username === author ? (
+                    <button
+                      className="delete"
+                      onClick={() => this.handleDeleteSingleArticle(article_id)}
+                    >
+                      <FontAwesomeIcon className="trashIcon" icon="trash" />
+                    </button>
+                  ) : null}
+                </div>
               </ArticleHeader>
+              <span className="articleDetails">
+                posted in {topic} by{' '}
+                <Link className="link author" to={`/users/${author}`}>
+                  <b>
+                    <span>{author}</span>
+                  </b>
+                </Link>{' '}
+                {since_posted}
+              </span>
               <ArticleBody>{body}</ArticleBody>
             </ArticleContent>
-            {username === author ? (
-              <button
-                onClick={() => this.handleDeleteSingleArticle(article_id)}
-              >
-                delete
-              </button>
-            ) : null}
           </ArticleContainer>
           <Comments
             article_id={this.props.article_id}

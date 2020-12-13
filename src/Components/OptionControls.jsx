@@ -4,8 +4,8 @@ import styled from 'styled-components';
 const OptionsContainer = styled.div`
   display: flex;
   flex-wrap: nowrap;
-  /* align-items: center; */
-  padding: 0;
+  align-items: center;
+  padding: 0 5vw 0 0;
   input {
     max-width: 25px;
   }

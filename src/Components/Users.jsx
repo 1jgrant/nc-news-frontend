@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
 import * as API from '../API';
+import styled from 'styled-components';
+
+const UserSelect = styled.form`
+  select {
+    width: 25vw;
+  }
+`;
 
 class Users extends Component {
   state = {
@@ -28,20 +35,17 @@ class Users extends Component {
 
   render() {
     return (
-      <div>
-        <form>
-          {/* <span>Current User</span> */}
-          <select onChange={this.handleChange}>
-            {this.state.users.map((user) => {
-              return (
-                <option key={user.username} value={user.username}>
-                  {user.username}
-                </option>
-              );
-            })}
-          </select>
-        </form>
-      </div>
+      <UserSelect>
+        <select onChange={this.handleChange}>
+          {this.state.users.map((user) => {
+            return (
+              <option key={user.username} value={user.username}>
+                {user.username}
+              </option>
+            );
+          })}
+        </select>
+      </UserSelect>
     );
   }
 }

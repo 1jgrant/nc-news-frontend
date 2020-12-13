@@ -15,21 +15,23 @@ const ArticlesContainer = styled.div`
   align-items: center;
   min-height: 100%;
   width: 100vw;
-  /* main {
-    width: 100vw;
-  } */
+  margin: 0;
 `;
 
 const ControlsContainer = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   background: rgb(237, 246, 249);
-  margin: 0.5vh 0 0.5vh 0;
-  padding: 1vh;
+  margin: 0.5vh 0vw 0.5vh 0vw;
+  padding: 1vh 0vw 1vh 0vw;
   font-size: 0.8em;
-  width: 100%;
+  width: 100vw;
   color: rgb(0, 109, 119);
+  .sortLinks {
+    padding-left: 5vw;
+    align-items: center;
+  }
   .link {
     color: rgb(0, 109, 119);
     padding: 0.4em;
@@ -126,7 +128,7 @@ class Articles extends Component {
     return (
       <ArticlesContainer>
         <ControlsContainer>
-          <div>
+          <div className="sortLinks">
             <Link className="link" to="top">
               <FontAwesomeIcon className="sortSelect" icon="trophy" /> Top
             </Link>

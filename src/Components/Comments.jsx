@@ -8,8 +8,23 @@ import * as API from '../API';
 const CommentsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  flex-grow: 0;
+  align-items: center;
+  width: 100vw;
+`;
+const CommentsContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-top: solid 1px rgb(0, 109, 119);
+  width: 90%;
+  margin: 2vh 0 0 0;
+  padding: 2vh 0 0 0;
+  .commentsLoader {
+    align-self: center;
+  }
+  select {
+    margin: 0 0 0.5vh 1vw;
+  }
 `;
 
 class Comments extends Component {
@@ -73,30 +88,32 @@ class Comments extends Component {
           username={this.props.username}
           handleAddComment={this.handleAddComment}
         />
-        <form onChange={this.handleSort}>
-          <label>
-            Sort
-            <select name="sort" defaultValue="new">
-              <option value="new">New</option>
-              <option value="top">Top</option>
-              <option value="old">Old</option>
-            </select>
-          </label>
-        </form>
-        {this.state.isLoading ? (
-          <Loader />
-        ) : (
-          this.state.comments.map((comment) => {
-            return (
-              <CommentCard
-                key={comment.comment_id}
-                comment={comment}
-                username={this.props.username}
-                handleDeleteComment={this.handleDeleteComment}
-              />
-            );
-          })
-        )}
+        <CommentsContent>
+          <form onChange={this.handleSort}>
+            <label>
+              Sort
+              <select name="sort" defaultValue="new">
+                <option value="new">New</option>
+                <option value="top">Top</option>
+                <option value="old">Old</option>
+              </select>
+            </label>
+          </form>
+          {this.state.isLoading ? (
+            <Loader className="commentsLoader" />
+          ) : (
+            this.state.comments.map((comment) => {
+              return (
+                <CommentCard
+                  key={comment.comment_id}
+                  comment={comment}
+                  username={this.props.username}
+                  handleDeleteComment={this.handleDeleteComment}
+                />
+              );
+            })
+          )}
+        </CommentsContent>
       </CommentsContainer>
     );
   }

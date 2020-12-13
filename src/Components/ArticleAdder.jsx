@@ -9,13 +9,23 @@ const AdderContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 30vw;
-  height: 30vh;
-
+  width: 100vw;
   form {
+    width: 50vw;
+    min-width: 200px;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    select {
+      width: 100%;
+    }
+    input {
+      width: 100%;
+    }
+    textarea {
+      width: 100%;
+      height: 3em;
+    }
   }
 `;
 
@@ -71,18 +81,19 @@ class ArticleAdder extends Component {
 
   render() {
     const { topics, title, body, isLoading, hasError, error } = this.state;
-    const { linkedFrom } = this.props.location.state;
-    const defaultTopic = linkedFrom ? linkedFrom : 'default';
-
     if (isLoading) {
-      return <Loader />;
+      return (
+        <AdderContainer>
+          <Loader />
+        </AdderContainer>
+      );
     }
     return (
       <AdderContainer>
-        <h1>Post to {defaultTopic}</h1>
+        <h1>Add an article...</h1>
         <form onSubmit={this.handleSubmit}>
           <label>
-            Select Topic
+            Topic
             <select
               value={this.state.topic}
               onChange={this.handleChange}

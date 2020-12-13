@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, navigate } from '@reach/router';
+import { navigate } from '@reach/router';
 import * as API from '../API';
 
 class Topics extends Component {
@@ -29,12 +29,9 @@ class Topics extends Component {
   };
 
   render() {
-    // console.log('topics props>>', this.props);
-    // console.log('topics state>>', this.state);
     const { topics, currentTopic } = this.state;
     return (
       <div>
-        {/* <span>TOPIC</span> */}
         <select onChange={this.handleTopicChange} value={currentTopic}>
           <option key="all" value={''}>
             ALL

@@ -6,17 +6,17 @@ const ErrorContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  width: 80%;
-  height: 100%;
+  width: 100vw;
+  height: 50vh;
+  color: rgb(0, 109, 119);
   h1 {
     padding: 0;
-    margin: 0;
-    font-size: 18rem;
-    background: white;
+    margin: 0 0 0 5vw;
+    font-size: 10em;
   }
   h2 {
     padding: 0;
-    margin: 0;
+    margin: 0 0 0 5vw;
   }
 `;
 
