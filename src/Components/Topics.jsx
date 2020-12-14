@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import { navigate } from '@reach/router';
 import * as API from '../API';
+import styled from 'styled-components';
+
+const TopicsSelect = styled.div`
+  select {
+    width: 60px;
+  }
+`;
 
 class Topics extends Component {
   state = {
@@ -31,7 +38,7 @@ class Topics extends Component {
   render() {
     const { topics, currentTopic } = this.state;
     return (
-      <div>
+      <TopicsSelect>
         <select onChange={this.handleTopicChange} value={currentTopic}>
           <option key="all" value={''}>
             ALL
@@ -44,7 +51,7 @@ class Topics extends Component {
             );
           })}
         </select>
-      </div>
+      </TopicsSelect>
     );
   }
 }

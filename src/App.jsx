@@ -33,39 +33,42 @@ library.add(
 
 const HeaderContainer = styled.div`
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: center;
+  width: 100vw;
   min-height: 6vh;
   background-color: rgb(237, 246, 249);
+  .headerContent {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    min-height: 6vh;
+    max-width: 850px;
+  }
+
+  .headerOptions {
+    display: flex;
+  }
   .link {
     text-decoration: none;
   }
   .home {
+    justify-self: start;
     background: transparent;
     color: rgb(0, 109, 119);
     h1 {
       font-size: 2em;
-      margin: 2px 5px 2px 5px;
+      margin: 2px 5px 2px 5vw;
     }
   }
+
   .post {
+    justify-self: end;
     font-size: 1.5em;
     color: rgb(0, 109, 119);
+    margin: 0 0.5em 0 0.5em;
   }
 `;
-
-// const ContentContainer = styled.main`
-//   display: flex;
-//   justify-content: center;
-//   min-height: 90vh;
-//   .Router {
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     width: 100%;
-//     min-height: 600px;
-//   }
-// `;
 
 class App extends Component {
   state = {
@@ -96,14 +99,26 @@ class App extends Component {
     return (
       <body className="App">
         <HeaderContainer>
-          <Link className="link home" to="/">
-            <h1 onClick={this.handleHome}>NCN</h1>
-          </Link>
-          <Topics topic={topic} updateTopic={this.updateTopic} />
-          <Link className="link" to={`/submit`} state={{ linkedFrom: topic }}>
-            <FontAwesomeIcon className="post" icon={faEdit} />
-          </Link>
-          <Users username={username} updateUser={this.updateUser} />
+          <section className="headerContent">
+            <Link className="link home" to="/">
+              <h1 onClick={this.handleHome}>NCN</h1>
+            </Link>
+            <section className="headerOptions">
+              <Topics topic={topic} updateTopic={this.updateTopic} />
+              <Link
+                className="link"
+                to={`/submit`}
+                state={{ linkedFrom: topic }}
+              >
+                <FontAwesomeIcon className="post" icon={faEdit} />
+              </Link>
+              <Users
+                className="users"
+                username={username}
+                updateUser={this.updateUser}
+              />
+            </section>
+          </section>
         </HeaderContainer>
         <Router className="Router">
           <ArticleAdder path="/submit" username={username} />

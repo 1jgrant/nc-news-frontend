@@ -4,7 +4,8 @@ import styled from 'styled-components';
 
 const UserSelect = styled.form`
   select {
-    width: 25vw;
+    width: 70px;
+    margin: 0 5vw 0 0;
   }
 `;
 
