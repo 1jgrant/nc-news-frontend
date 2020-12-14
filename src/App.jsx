@@ -97,7 +97,7 @@ class App extends Component {
     const { topic } = this.state;
     const username = this.state.currentUser.username;
     return (
-      <body className="App">
+      <div className="App">
         <HeaderContainer>
           <section className="headerContent">
             <Link className="link home" to="/">
@@ -127,7 +127,7 @@ class App extends Component {
           <SingleArticle path="/articles/:article_id/*" username={username} />
           <SingleUser path="/users/:username/*" username={username} />
         </Router>
-      </body>
+      </div>
     );
   }
 }
