@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Router, Link } from '@reach/router';
-import Topics from './Components/Topics';
-import Users from './Components/Users';
-import Articles from './Components/Articles';
-import SingleArticle from './Components/SingleArticle';
-import SingleUser from './Components/SingleUser';
-import ArticleAdder from './Components/ArticleAdder';
+import Topics from './Components/Screens/Topics/Topics';
+import Users from './Components/Screens/Users/Users';
+import Articles from './Components/Screens/Articles/Articles';
+import SingleArticle from './Components/Screens/Articles/SingleArticle';
+import SingleUser from './Components/Screens/Users/SingleUser';
+import ArticleAdder from './Components/Screens/Articles/ArticleAdder';
 import styled from 'styled-components';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {

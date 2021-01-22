@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Votes from './Votes';
-import '../App.css';
+import Votes from '../../Votes';
+import '../../../App.css';
 import { Link } from '@reach/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import * as API from '../API';
+import * as API from '../../../API';
 import styled from 'styled-components';
 
 const UserSelect = styled.form`

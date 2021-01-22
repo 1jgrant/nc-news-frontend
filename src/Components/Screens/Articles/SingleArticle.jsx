@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import '../App.css';
+import '../../../App.css';
 import { Link } from '@reach/router';
-import Votes from './Votes';
-import Comments from './Comments';
-import * as API from '../API';
-import Loader from './Loader';
-import ErrorPage from './ErrorPage';
+import Votes from '../../Votes';
+import Comments from '../Comments/Comments';
+import * as API from '../../../API';
+import Loader from '../../Loader';
+import ErrorPage from '../Errors/ErrorPage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ContentContainer = styled.div`

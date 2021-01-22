@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { navigate } from '@reach/router';
-import * as API from '../API';
+import * as API from '../../../API';
 import styled from 'styled-components';
 
 const TopicsSelect = styled.div`

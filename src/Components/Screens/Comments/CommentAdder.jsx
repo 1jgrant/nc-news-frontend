@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import * as API from '../API';
+import * as API from '../../../API';
 
 const CommentContainer = styled.div`
   display: flex;

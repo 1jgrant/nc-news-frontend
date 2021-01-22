@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from '@reach/router';
-import OptionControls from './OptionControls';
+import OptionControls from '../../OptionControls';
 import ArticleCard from './ArticleCard';
 import styled from 'styled-components';
-import Loader from './Loader';
-import ErrorPage from './ErrorPage';
-import * as API from '../API';
-import '../App.css';
+import Loader from '../../Loader';
+import ErrorPage from '../Errors/ErrorPage';
+import * as API from '../../../API';
+import '../../../App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ArticlesContainer = styled.div`

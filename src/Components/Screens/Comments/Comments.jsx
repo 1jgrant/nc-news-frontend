@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import CommentCard from './CommentCard';
 import CommentAdder from './CommentAdder';
-import Loader from './Loader';
-import * as API from '../API';
+import Loader from '../../Loader';
+import * as API from '../../../API';
 
 const CommentsContainer = styled.div`
   display: flex;

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { navigate } from '@reach/router';
-import Loader from './Loader';
-import ErrorBox from './ErrorBox';
-import * as API from '../API';
+import Loader from '../../Loader';
+import ErrorBox from '../Errors/ErrorBox';
+import * as API from '../../../API';
 import styled from 'styled-components';
 
 const AdderContainer = styled.div`

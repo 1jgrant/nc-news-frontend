@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import Loader from './Loader';
-import Articles from './Articles';
+import Loader from '../../Loader';
+import Articles from '../Articles/Articles';
 import { Router } from '@reach/router';
-import * as API from '../API';
+import * as API from '../../../API';
 import styled from 'styled-components';
-import ErrorPage from './ErrorPage';
+import ErrorPage from '../Errors/ErrorPage';
 
 const UserContainer = styled.div`
   display: flex;
