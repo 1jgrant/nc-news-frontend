@@ -4,6 +4,7 @@ import CommentCard from './CommentCard';
 import CommentAdder from './CommentAdder';
 import Loader from '../../Loader';
 import * as API from '../../../API';
+import Form from 'react-bootstrap/Form'
 
 const CommentsContainer = styled.div`
   display: flex;
@@ -23,7 +24,11 @@ const CommentsContent = styled.div`
     align-self: center;
   }
   select {
-    margin: 0 0 0.5vh 1vw;
+    margin: 0 0 0 0.5em;
+  }
+  form {
+    display: flex;
+    padding: 0 0 0.8em 0;
   }
 `;
 
@@ -89,16 +94,14 @@ class Comments extends Component {
           handleAddComment={this.handleAddComment}
         />
         <CommentsContent>
-          <form onChange={this.handleSort}>
-            <label>
-              Sort
-              <select name="sort" defaultValue="new">
-                <option value="new">New</option>
-                <option value="top">Top</option>
-                <option value="old">Old</option>
-              </select>
-            </label>
-          </form>
+          <Form onChange={this.handleSort}>
+            <Form.Label>Sort</Form.Label>
+            <Form.Control as='select' size='sm' name="sort" defaultValue="new">
+              <option value="new">New</option>
+              <option value="top">Top</option>
+              <option value="old">Old</option>
+            </Form.Control>
+          </Form>
           {this.state.isLoading ? (
             <Loader className="commentsLoader" />
           ) : (
