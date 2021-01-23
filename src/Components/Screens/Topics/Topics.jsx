@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { navigate } from '@reach/router';
 import * as API from '../../../API';
 import styled from 'styled-components';
+import Form from 'react-bootstrap/Form';
 
 const TopicsSelect = styled.div`
   select {
@@ -39,7 +40,7 @@ class Topics extends Component {
     const { topics, currentTopic } = this.state;
     return (
       <TopicsSelect>
-        <select onChange={this.handleTopicChange} value={currentTopic}>
+        <Form.Control as='select' size='sm' onChange={this.handleTopicChange} value={currentTopic}>
           <option key="all" value={''}>
             ALL
           </option>
@@ -50,7 +51,7 @@ class Topics extends Component {
               </option>
             );
           })}
-        </select>
+        </Form.Control>
       </TopicsSelect>
     );
   }

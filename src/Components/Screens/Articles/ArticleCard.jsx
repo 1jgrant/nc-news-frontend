@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Votes from '../../Votes';
 import '../../../App.css';
+import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ArticleCardContainer = styled.div`
@@ -39,10 +40,16 @@ const ArticleCardHeader = styled.div`
   }
   .delBox {
     justify-self: end;
-    width: 40px;
+    width: 35px;
     .trashIcon {
       pointer-events: none;
     }
+  }
+  button{
+    font-size: 0.7rem;
+    color: rgb(0, 109, 119);
+    border: 1px solid rgb(0, 109, 119);
+    font-size: 0.6rem;
   }
 `;
 
@@ -66,12 +73,14 @@ const ArticleCard = (props) => {
           </Link>
           <div className="delBox">
             {props.username === author ? (
-              <button
+              <Button
+                size='sm'
+                variant='outline-info'
                 className="delete"
                 onClick={() => props.handleDeleteArticle(article_id)}
               >
                 <FontAwesomeIcon className="trashIcon" icon="trash" />
-              </button>
+              </Button>
             ) : null}
           </div>
         </ArticleCardHeader>

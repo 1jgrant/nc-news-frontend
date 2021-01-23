@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as API from '../../../API';
 import styled from 'styled-components';
+import Form from 'react-bootstrap/Form';
 
 const UserSelect = styled.form`
   select {
@@ -37,7 +38,7 @@ class Users extends Component {
   render() {
     return (
       <UserSelect>
-        <select onChange={this.handleChange}>
+        <Form.Control as='select' size='sm' onChange={this.handleChange}>
           {this.state.users.map((user) => {
             return (
               <option key={user.username} value={user.username}>
@@ -45,7 +46,7 @@ class Users extends Component {
               </option>
             );
           })}
-        </select>
+        </Form.Control>
       </UserSelect>
     );
   }
