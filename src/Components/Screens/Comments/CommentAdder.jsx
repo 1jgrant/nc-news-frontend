@@ -21,6 +21,9 @@ const PostButton = styled(Button)`
   background: rgb(0, 109, 119);
   border: 2px solid rgb(0, 109, 119);
   margin: 2px 0 0 0;
+  :focus{
+    background: rgb(0, 109, 119);
+  }
 `
 
 const StyledFormControl = styled(Form.Control)`
@@ -62,7 +65,7 @@ class CommentAdder extends Component {
             placeholder={`Join the conversation ${username}...`}
             required
           />
-          <PostButton size='sm' type="submit">POST</PostButton>
+          <PostButton variant='info' size='sm' type="submit">POST</PostButton>
         </Form>
       </CommentContainer>
     );
