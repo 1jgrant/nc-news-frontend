@@ -28,6 +28,7 @@ const CommentsContent = styled.div`
   }
   form {
     display: flex;
+    align-items: center;
     padding: 0 0 0.8em 0;
   }
 `;

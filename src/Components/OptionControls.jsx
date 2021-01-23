@@ -1,13 +1,25 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import Form from 'react-bootstrap/Form';
 
-const OptionsContainer = styled.div`
+const OptionsContainer = styled(Form)`
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
   padding: 0 5vw 0 0;
-  input {
-    max-width: 25px;
+  margin: 0;
+  .form-group {
+    display: flex;
+    align-items: center;
+    padding: 0 0 0 2vw;
+    margin: 0;
+  }
+  .form-control {
+    margin: 0;
+    padding: 0
+  }
+  .form-label {
+    margin: 0 1vw 0 0;
   }
 `;
 
@@ -26,28 +38,28 @@ class OptionControls extends Component {
   render() {
     return (
       <OptionsContainer>
-        <form>
-          <label>
-            View
-            <select name="limit" defaultValue={10} onChange={this.handleChange}>
+          <Form.Group>
+            <Form.Label>View</Form.Label>
+            <Form.Control as='select' size='sm' name="limit" defaultValue={10} onChange={this.handleChange}>
               <option value={5}>5</option>
               <option value={10}>10</option>
               <option value={20}>20</option>
               <option value={1000}>All</option>
-            </select>
-          </label>
-          <label>
-            Page
-            <input
-              type="number"
+            </Form.Control>
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Page</Form.Label>
+            <Form.Control 
+              as="select"
+              size= 'sm'
               name="p"
-              step={1}
-              min={1}
               value={this.state.p}
-              onChange={this.handleChange}
-            ></input>
-          </label>
-        </form>
+              onChange={this.handleChange}>
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
+            </Form.Control>
+          </Form.Group>
       </OptionsContainer>
     );
   }

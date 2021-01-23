@@ -45,9 +45,9 @@ const HeaderContainer = styled.div`
     min-height: 6vh;
     max-width: 850px;
   }
-
   .headerOptions {
     display: flex;
+    align-items: center;
   }
   .link {
     text-decoration: none;
@@ -57,14 +57,13 @@ const HeaderContainer = styled.div`
     background: transparent;
     color: rgb(0, 109, 119);
     h1 {
-      font-size: 2em;
-      margin: 2px 5px 2px 5vw;
+      font-size: 2.5em;
+      margin: 5px 5px 2px 5vw;
     }
   }
-
   .post {
     justify-self: end;
-    font-size: 1.5em;
+    font-size: 2em;
     color: rgb(0, 109, 119);
     margin: 0 0.5em 0 0.5em;
   }

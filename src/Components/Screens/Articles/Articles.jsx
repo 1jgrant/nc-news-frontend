@@ -31,10 +31,14 @@ const ControlsContainer = styled.div`
   .sortLinks {
     padding-left: 5vw;
     align-items: center;
+    font-size: 1em;
   }
   .link {
     color: rgb(0, 109, 119);
     padding: 0.4em;
+  }
+  .sortSelect {
+    font-size: 1.4em;
   }
 `;
 
