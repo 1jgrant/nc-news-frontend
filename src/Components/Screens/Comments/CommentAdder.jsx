@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import * as API from '../../../API';
 import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const CommentContainer = styled.div`
@@ -13,22 +14,20 @@ const CommentContainer = styled.div`
     display: flex;
     flex-direction: column;
   }
-  textArea {
-    width: 80vw;
-    height: 3em;
-    border: solid 1px rgba(110, 110, 110, 0.607);
-    border-radius: 3px;
-  }
-  button {
-    align-self: flex-end;
-    margin: 2px 0 0 0;
-  }
 `;
 
 const PostButton = styled(Button)`
+  align-self: flex-end;
   background: rgb(0, 109, 119);
   border: 2px solid rgb(0, 109, 119);
-  
+  margin: 2px 0 0 0;
+`
+
+const StyledFormControl = styled(Form.Control)`
+  width: 80vw;
+  height: 3em;
+  border: solid 1px rgba(110, 110, 110, 0.607);
+  border-radius: 3px;
 `
 
 class CommentAdder extends Component {
@@ -53,18 +52,18 @@ class CommentAdder extends Component {
     const { username } = this.props;
     return (
       <CommentContainer>
-        <form onSubmit={this.handleSubmit}>
-          <textarea
-            type="text"
-            name="body"
-            className="commentInput"
-            value={this.state.body}
-            onChange={this.handleChange}
+        <Form onSubmit={this.handleSubmit}>
+          <StyledFormControl 
+          as='textarea' 
+          rows={2}
+          name="body"
+          value={this.state.body}
+          onChange={this.handleChange}
             placeholder={`Join the conversation ${username}...`}
             required
-          ></textarea>
+          />
           <PostButton size='sm' type="submit">POST</PostButton>
-        </form>
+        </Form>
       </CommentContainer>
     );
   }
