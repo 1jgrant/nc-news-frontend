@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Button from 'react-bootstrap/Button';
 import * as API from '../API';
 
 const VotesContainer = styled.div`
@@ -16,8 +17,17 @@ const VotesContainer = styled.div`
     padding: 0;
     margin: 0;
     text-align: center;
-    max-width: 10vw;
+    width: 4vw;
+    max-width: 15px;
   }
+  .btn-info {
+      background-color: rgb(0, 109, 119);
+      border: 1px solid rgb(0, 109, 119);
+    }
+  .btn-outline-info {
+      color: rgb(0, 109, 119);
+      border: 1px solid rgb(0, 109, 119);
+    }
   .voteIcon {
     pointer-events: none;
   }
@@ -27,6 +37,12 @@ class Votes extends Component {
   state = {
     voteChange: 0,
     hasVoted: false,
+    appearance: {
+      on: 'info',
+      off: 'outline-info'
+    },
+    up: 'off',
+    down: 'off'
   };
 
   handleVote = (event) => {
@@ -47,24 +63,33 @@ class Votes extends Component {
     API.updateVotes(targetComponent, changeToMake.patchChange).catch((err) => {
       this.setState({ voteChange: 0, hasVoted: false }, () => {});
     });
-    this.setState({
-      voteChange: changeToMake.voteChange,
-      hasVoted: changeToMake.hasVoted,
+    this.setState((currentState) => {
+      // change the appearance of the buttons to show the current selection
+      const targetButton = event.target.name === 'up' ? 'up' : 'down';
+      const nonTargetButton = event.target.name === 'up' ? 'down' : 'up';
+      const newValue = currentState[targetButton] === 'off' ? 'on' : 'off';
+      return {
+        ...currentState,
+        voteChange: changeToMake.voteChange,
+        hasVoted: changeToMake.hasVoted,
+        [targetButton]: newValue,
+        [nonTargetButton]: 'off'
+      }
     });
   };
 
   render() {
     const { votes } = this.props;
-    const { voteChange } = this.state;
+    const { voteChange, up, down, appearance } = this.state;
     return (
       <VotesContainer>
-        <button className="up" onClick={this.handleVote} value={1} name={1}>
+        <Button variant={appearance[up]} key='up' className={up} onClick={this.handleVote} value={1} name='up'>
           <FontAwesomeIcon className="voteIcon" icon="angle-up" />
-        </button>
+        </Button>
         <span className="score">{votes + Number(voteChange)}</span>
-        <button className="down" onClick={this.handleVote} value={-1}>
+        <Button variant={appearance[down]} key='down' className={down} onClick={this.handleVote} value={-1} name='down'>
           <FontAwesomeIcon className="voteIcon" icon="angle-down" />
-        </button>
+        </Button>
       </VotesContainer>
     );
   }
