@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import '../../../App.css';
-import { Link } from '@reach/router';
+import { Link, navigate } from '@reach/router';
 import Votes from '../../Votes';
 import Comments from '../Comments/Comments';
 import * as API from '../../../API';
 import Loader from '../../Loader';
 import ErrorPage from '../Errors/ErrorPage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Button from 'react-bootstrap/Button';
 
 const ContentContainer = styled.div`
   display: flex;
@@ -20,8 +21,8 @@ const ArticleContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   width: 100vw;
-  padding: 0.5vh 0vw 0.5vh 0vw;
-  margin: 3vh 0 0.5vh 0;
+  padding: 0em 0vw 0.5vh 0vw;
+  margin: 1em 0 0.5vh 0;
   .votes {
     margin: 0 0 0 2vw;
   }
@@ -54,10 +55,15 @@ const ArticleHeader = styled.div`
       pointer-events: none;
     }
   }
+  button{
+    font-size: 0.7rem;
+    color: rgb(0, 109, 119);
+    border: 1px solid rgb(0, 109, 119);
+  }
 `;
 
 const ArticleBody = styled.p`
-  padding: 0 5vw 0 0;
+  padding: 1em 5vw 0 0;
 `;
 
 class SingleArticle extends Component {
@@ -66,6 +72,7 @@ class SingleArticle extends Component {
     isLoading: true,
     hasError: false,
     error: {},
+    isDeleted: false
   };
 
   componentDidMount() {
@@ -90,12 +97,7 @@ class SingleArticle extends Component {
 
   handleDeleteSingleArticle = (article_id) => {
     API.deleteArticle(article_id).then(() => {
-      this.setState((currentState) => {
-        const filteredArticles = currentState.articles.filter((article) => {
-          return article.article_id !== article_id;
-        });
-        return { articles: filteredArticles };
-      });
+      this.setState({isDeleted: true})
     });
   };
 
@@ -109,7 +111,7 @@ class SingleArticle extends Component {
       since_posted,
       article_id,
     } = this.state.article;
-    const { isLoading, hasError, error } = this.state;
+    const { isLoading, hasError, error, isDeleted } = this.state;
     const { username } = this.props;
     if (hasError) {
       return <ErrorPage error={error} />;
@@ -119,6 +121,12 @@ class SingleArticle extends Component {
           <Loader />
         </ContentContainer>
       );
+    } else if (isDeleted) {
+      return (
+        <ContentContainer>
+          <h1>Article Deleted</h1>
+        </ContentContainer>
+      )
     } else
       return (
         <ContentContainer>
@@ -131,12 +139,13 @@ class SingleArticle extends Component {
                 <h1>{title}</h1>
                 <div className="delBox">
                   {username === author ? (
-                    <button
-                      className="delete"
+                    <Button
+                      size='sm'
+                      variant='outline-info'
                       onClick={() => this.handleDeleteSingleArticle(article_id)}
                     >
                       <FontAwesomeIcon className="trashIcon" icon="trash" />
-                    </button>
+                    </Button>
                   ) : null}
                 </div>
               </ArticleHeader>
