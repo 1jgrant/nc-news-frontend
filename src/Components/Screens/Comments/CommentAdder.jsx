@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import * as API from '../../../API';
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const CommentContainer = styled.div`
   display: flex;
@@ -22,6 +24,12 @@ const CommentContainer = styled.div`
     margin: 2px 0 0 0;
   }
 `;
+
+const PostButton = styled(Button)`
+  background: rgb(0, 109, 119);
+  border: 2px solid rgb(0, 109, 119);
+  
+`
 
 class CommentAdder extends Component {
   state = {
@@ -55,7 +63,7 @@ class CommentAdder extends Component {
             placeholder={`Join the conversation ${username}...`}
             required
           ></textarea>
-          <button type="submit">POST</button>
+          <PostButton size='sm' type="submit">POST</PostButton>
         </form>
       </CommentContainer>
     );
