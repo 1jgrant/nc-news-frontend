@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Votes from '../../Votes';
 import '../../../App.css';
 import { Link } from '@reach/router';
+import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const CommentCardContainer = styled.div`
@@ -20,8 +21,14 @@ const CommentCardHeader = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
+  align-items: center;
   .trashIcon {
     pointer-events: none;
+  }
+  button{
+    font-size: 0.7rem;
+    color: rgb(0, 109, 119);
+    border: 1px solid rgb(0, 109, 119);
   }
 `;
 
@@ -42,12 +49,13 @@ const CommentCard = (props) => {
             </Link>
           </span>
           {props.username === author ? (
-            <button
-              className="delete"
+            <Button
+              size='sm'
+              variant='outline-info'
               onClick={() => props.handleDeleteComment(comment_id)}
             >
               <FontAwesomeIcon className="trashIcon" icon="trash" />
-            </button>
+            </Button>
           ) : null}
         </CommentCardHeader>
         <CommentBody>{body}</CommentBody>
