@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import Form from 'react-bootstrap/Form';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 const OptionsContainer = styled(Form)`
   display: flex;
@@ -21,6 +23,14 @@ const OptionsContainer = styled(Form)`
   .form-label {
     margin: 0 1vw 0 0;
   }
+  .dropdown {
+    margin: 0 1em 0 0;
+  }
+  .dropdown-toggle {
+    font-size: 0.8em;
+    background: rgb(0, 109, 119);
+    border: none;
+  }
 `;
 
 class OptionControls extends Component {
@@ -30,7 +40,9 @@ class OptionControls extends Component {
   };
 
   handleChange = (event) => {
+    event.preventDefault();
     const { name, value } = event.target;
+    console.log(name, value);
     if (name === 'limit' && Number(value) === 1000) {
       this.setState({ [name]: Number(value), p: 1 });
       this.props.handlePageOptions({ [name]: Number(value), p: 1 });
@@ -42,24 +54,37 @@ class OptionControls extends Component {
 
   render() {
     const { totalArticles } = this.props;
-    const { limit } = this.state;
+    const { limit, p } = this.state;
+    const limitOptions = [
+      { label: 10, value: 10 },
+      { label: 20, value: 20 },
+      { label: 'All', value: 1000 },
+    ];
     const maxPage = Math.ceil(totalArticles / limit);
     const pages = Array.from({ length: maxPage - 1 }, (v, i) => i + 2);
     return (
       <OptionsContainer>
         <Form.Group>
           <Form.Label>View</Form.Label>
-          <Form.Control
-            as="select"
-            size="sm"
-            name="limit"
-            defaultValue={10}
-            onChange={this.handleChange}
+          <DropdownButton
+            id="user-dropdown"
+            variant="info"
+            title={limit === 1000 ? 'All' : limit}
           >
-            <option value={10}>10</option>
-            <option value={20}>20</option>
-            <option value={1000}>All</option>
-          </Form.Control>
+            {limitOptions.map((option) => {
+              return (
+                <Dropdown.Item
+                  as="button"
+                  key={option.label}
+                  value={option.value}
+                  name="limit"
+                  onClick={this.handleChange}
+                >
+                  {option.label}
+                </Dropdown.Item>
+              );
+            })}
+          </DropdownButton>
         </Form.Group>
         <Form.Group>
           <Form.Label>Page</Form.Label>
