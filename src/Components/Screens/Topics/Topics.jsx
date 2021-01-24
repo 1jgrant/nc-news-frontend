@@ -2,17 +2,29 @@ import React, { Component } from 'react';
 import { navigate } from '@reach/router';
 import * as API from '../../../API';
 import styled from 'styled-components';
-import Form from 'react-bootstrap/Form';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 const TopicsSelect = styled.div`
   select {
     width: 60px;
   }
+  .dropdown {
+    color: rgb(236, 14, 14);
+    margin: 2px 0 0 0;
+  }
+  .topics-dropdown {
+    background-color: rgb(232, 16, 41);
+  }
+  .dropdown-toggle {
+    background: rgb(0, 109, 119);
+    border: none;
+  }
 `;
 
 class Topics extends Component {
   state = {
-    currentTopic: '',
+    currentTopic: 'all',
     topics: [],
   };
 
@@ -27,31 +39,48 @@ class Topics extends Component {
     }
   }
 
-  handleTopicChange = (event) => {
+  handleTopicClick = (event) => {
     const targetTopic = event.target.value;
+    console.log(targetTopic);
     this.setState({ currentTopic: targetTopic }, () => {
       this.props.updateTopic(this.state.currentTopic);
     });
-    const path = targetTopic === '' ? '/' : `/articles/topics/${targetTopic}`;
+    const path =
+      targetTopic === 'all' ? '/' : `/articles/topics/${targetTopic}`;
     navigate(path);
   };
 
   render() {
     const { topics, currentTopic } = this.state;
+    console.log(currentTopic);
     return (
       <TopicsSelect>
-        <Form.Control as='select' size='sm' onChange={this.handleTopicChange} value={currentTopic}>
-          <option key="all" value={''}>
+        <DropdownButton
+          id="topics-dropdown"
+          size="sm"
+          variant="info"
+          title={currentTopic.toUpperCase()}
+        >
+          <Dropdown.ItemText>Select a topic:</Dropdown.ItemText>
+          <Dropdown.Item
+            as="button"
+            onClick={this.handleTopicClick}
+            value="all"
+          >
             ALL
-          </option>
+          </Dropdown.Item>
           {topics.map((topic) => {
             return (
-              <option key={topic.slug} value={topic.slug}>
+              <Dropdown.Item
+                as="button"
+                value={topic.slug}
+                onClick={this.handleTopicClick}
+              >
                 {topic.slug.toUpperCase()}
-              </option>
+              </Dropdown.Item>
             );
           })}
-        </Form.Control>
+        </DropdownButton>
       </TopicsSelect>
     );
   }
