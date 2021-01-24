@@ -1,35 +1,38 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import Form from 'react-bootstrap/Form';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 
-const OptionsContainer = styled(Form)`
+const OptionsContainer = styled.div`
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
   padding: 0 5vw 0 0;
   margin: 0;
-  .form-group {
+  div {
     display: flex;
     align-items: center;
-    padding: 0 0 0 2vw;
-    margin: 0;
   }
-  .form-control {
-    margin: 0;
-    padding: 0;
-  }
-  .form-label {
-    margin: 0 1vw 0 0;
+  span {
+    margin: 0 0.3em 0 0;
   }
   .dropdown {
-    margin: 0 1em 0 0;
+    margin: 0 0.5em 0 0;
   }
   .dropdown-toggle {
     font-size: 0.8em;
-    background: rgb(0, 109, 119);
-    border: none;
+    color: rgb(0, 109, 119);
+    border: 1px solid rgb(0, 109, 119);
+    :hover {
+      background-color: rgb(0, 109, 119);
+      color: #fff;
+    }
+  }
+  .dropdown-item {
+    :active {
+      background-color: rgb(237, 246, 249);
+      color: rgb(0, 109, 119);
+    }
   }
 `;
 
@@ -64,11 +67,11 @@ class OptionControls extends Component {
     const pages = Array.from({ length: maxPage - 1 }, (v, i) => i + 2);
     return (
       <OptionsContainer>
-        <Form.Group>
-          <Form.Label>View</Form.Label>
+        <div>
+          <span>View</span>
           <DropdownButton
-            id="user-dropdown"
-            variant="info"
+            id="view-dropdown"
+            variant="outline-info"
             title={limit === 1000 ? 'All' : limit}
           >
             {limitOptions.map((option) => {
@@ -85,28 +88,34 @@ class OptionControls extends Component {
               );
             })}
           </DropdownButton>
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Page</Form.Label>
-          <Form.Control
-            as="select"
-            size="sm"
-            name="p"
-            value={this.state.p}
-            onChange={this.handleChange}
-          >
-            <option key={1} value={1}>
-              {1}
-            </option>
+        </div>
+        <div>
+          <span>Page</span>
+          <DropdownButton id="page-dropdown" variant="outline-info" title={p}>
+            <Dropdown.Item
+              as="button"
+              name="p"
+              key={1}
+              value={1}
+              onClick={this.handleChange}
+            >
+              1
+            </Dropdown.Item>
             {pages.map((page) => {
               return (
-                <option key={page} value={page}>
+                <Dropdown.Item
+                  as="button"
+                  name="p"
+                  key={page}
+                  value={page}
+                  onClick={this.handleChange}
+                >
                   {page}
-                </option>
+                </Dropdown.Item>
               );
             })}
-          </Form.Control>
-        </Form.Group>
+          </DropdownButton>
+        </div>
       </OptionsContainer>
     );
   }
