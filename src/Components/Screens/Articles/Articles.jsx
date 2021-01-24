@@ -8,6 +8,7 @@ import ErrorPage from '../Errors/ErrorPage';
 import * as API from '../../../API';
 import '../../../App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Pagination from 'react-bootstrap/Pagination';
 
 const ArticlesContainer = styled.div`
   display: flex;
@@ -16,6 +17,26 @@ const ArticlesContainer = styled.div`
   min-height: 100%;
   width: 100vw;
   margin: 0;
+  main {
+    display: flex;
+    flex-direction: column;
+  }
+  .pagination {
+    margin: 0.5em 0 0.5em 0;
+    align-self: center;
+  }
+  .page-item {
+    .page-link {
+      color: rgb(0, 109, 119);
+    }
+  }
+  .active {
+    .page-link {
+      color: white;
+      background-color: rgb(0, 109, 119);
+      border: 1px solid rgb(0, 109, 119);
+    }
+  }
 `;
 
 const ControlsContainer = styled.div`
@@ -51,6 +72,7 @@ class Articles extends Component {
     error: {},
     limit: 10,
     p: 1,
+    totalArticles: 0,
   };
 
   componentDidMount() {
@@ -65,6 +87,30 @@ class Articles extends Component {
     )
       .then((articles) => {
         this.setState({ articles, isLoading: false });
+      })
+      .catch((err) => {
+        const {
+          response: {
+            status,
+            data: { msg },
+          },
+        } = err;
+        this.setState({
+          error: { status, msg },
+          hasError: true,
+          isLoading: false,
+        });
+      });
+    //get total number of articles in the db with the selected filters
+    API.getArticleNum(
+      this.props.topic_name,
+      this.props['*'],
+      1000,
+      p,
+      selectedAuthor
+    )
+      .then((quantity) => {
+        this.setState({ totalArticles: quantity });
       })
       .catch((err) => {
         const {
@@ -103,6 +149,16 @@ class Articles extends Component {
           this.setState({ articles, isLoading: false });
         });
       });
+      API.getArticleNum(
+        this.props.topic_name,
+        this.props['*'],
+        1000,
+        1,
+        selectedAuthor
+      ).then((quantity) => {
+        console.log('quantity>', quantity);
+        this.setState({ totalArticles: quantity });
+      });
     }
   }
 
@@ -121,11 +177,41 @@ class Articles extends Component {
     });
   };
 
+  handlePageBar = (targetPage, maxPage) => {
+    console.log(targetPage);
+    const newPage =
+      targetPage < 1 ? 1 : targetPage > maxPage ? maxPage : targetPage;
+    this.setState({ p: newPage });
+  };
+
   render() {
     const isInvalidPath = !['', 'top', 'popular', 'new'].includes(
       this.props['*']
     );
-    const { hasError, error, isLoading } = this.state;
+    const { hasError, error, isLoading, p, limit, totalArticles } = this.state;
+    //create pagination bar items
+    const maxPage = Math.ceil(totalArticles / limit);
+    const pages = [];
+    for (let i = 1; i <= maxPage; i++) {
+      pages.push(
+        <Pagination.Item
+          key={i}
+          active={i === p}
+          onClick={() => this.handlePageBar(i, maxPage)}
+        >
+          {i}
+        </Pagination.Item>
+      );
+    }
+    console.log(
+      'maxPage>>',
+      maxPage,
+      'totalArticles>>',
+      totalArticles,
+      'limit>>',
+      limit
+    );
+    console.log(pages);
     if (isInvalidPath || hasError) {
       return <ErrorPage error={error} isInvalidPath={isInvalidPath} />;
     }
@@ -145,8 +231,9 @@ class Articles extends Component {
           </div>
           <OptionControls
             handlePageOptions={this.handlePageOptions}
-            currentPage={this.state.p}
-            currentLimit={this.state.Limit}
+            currentPage={p}
+            currentLimit={limit}
+            totalArticles={totalArticles}
           />
         </ControlsContainer>
         {isLoading ? (
@@ -163,6 +250,15 @@ class Articles extends Component {
                 />
               );
             })}
+            <Pagination>
+              <Pagination.Prev
+                onClick={() => this.handlePageBar(p - 1, maxPage)}
+              />
+              {pages}
+              <Pagination.Next
+                onClick={() => this.handlePageBar(p + 1, maxPage)}
+              />
+            </Pagination>
           </main>
         )}
       </ArticlesContainer>
