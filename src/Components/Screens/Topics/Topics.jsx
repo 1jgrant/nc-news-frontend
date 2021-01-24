@@ -9,14 +9,8 @@ const TopicsSelect = styled.div`
   select {
     width: 60px;
   }
-  .dropdown {
-    color: rgb(236, 14, 14);
-    margin: 2px 0 0 0;
-  }
-  .topics-dropdown {
-    background-color: rgb(232, 16, 41);
-  }
   .dropdown-toggle {
+    font-size: 0.8em;
     background: rgb(0, 109, 119);
     border: none;
   }
@@ -41,7 +35,6 @@ class Topics extends Component {
 
   handleTopicClick = (event) => {
     const targetTopic = event.target.value;
-    console.log(targetTopic);
     this.setState({ currentTopic: targetTopic }, () => {
       this.props.updateTopic(this.state.currentTopic);
     });
@@ -52,7 +45,6 @@ class Topics extends Component {
 
   render() {
     const { topics, currentTopic } = this.state;
-    console.log(currentTopic);
     return (
       <TopicsSelect>
         <DropdownButton
@@ -65,6 +57,7 @@ class Topics extends Component {
           <Dropdown.Item
             as="button"
             onClick={this.handleTopicClick}
+            key="all"
             value="all"
           >
             ALL
@@ -73,6 +66,7 @@ class Topics extends Component {
             return (
               <Dropdown.Item
                 as="button"
+                key={topic.slug}
                 value={topic.slug}
                 onClick={this.handleTopicClick}
               >

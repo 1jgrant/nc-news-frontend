@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import * as API from '../../../API';
 import styled from 'styled-components';
-import Form from 'react-bootstrap/Form';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from 'react-bootstrap/Dropdown';
 
-const UserSelect = styled.form`
-  select {
-    width: 70px;
-    margin: 0 5vw 0 0;
+const UserSelect = styled.div`
+  .dropdown {
+    margin: 0 1em 0 0;
+  }
+  .dropdown-toggle {
+    font-size: 0.8em;
+    background: rgb(0, 109, 119);
+    border: none;
   }
 `;
 
@@ -27,7 +32,8 @@ class Users extends Component {
     });
   }
 
-  handleChange = (event) => {
+  handleUserClick = (event) => {
+    event.preventDefault();
     const newUser = this.state.users.filter(
       (user) => user.username === event.target.value
     )[0];
@@ -36,17 +42,29 @@ class Users extends Component {
   };
 
   render() {
+    const { users, currentUser } = this.state;
     return (
       <UserSelect>
-        <Form.Control as='select' size='sm' onChange={this.handleChange}>
-          {this.state.users.map((user) => {
+        <DropdownButton
+          id="user-dropdown"
+          size="sm"
+          variant="info"
+          title={currentUser.username}
+        >
+          <Dropdown.ItemText>Select a user:</Dropdown.ItemText>
+          {users.map((user) => {
             return (
-              <option key={user.username} value={user.username}>
+              <Dropdown.Item
+                as="button"
+                key={user.username}
+                value={user.username}
+                onClick={this.handleUserClick}
+              >
                 {user.username}
-              </option>
+              </Dropdown.Item>
             );
           })}
-        </Form.Control>
+        </DropdownButton>
       </UserSelect>
     );
   }
