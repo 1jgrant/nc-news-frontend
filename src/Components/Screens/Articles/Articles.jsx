@@ -178,7 +178,6 @@ class Articles extends Component {
   };
 
   handlePageBar = (targetPage, maxPage) => {
-    console.log(targetPage);
     const newPage =
       targetPage < 1 ? 1 : targetPage > maxPage ? maxPage : targetPage;
     this.setState({ p: newPage });
@@ -203,15 +202,6 @@ class Articles extends Component {
         </Pagination.Item>
       );
     }
-    console.log(
-      'maxPage>>',
-      maxPage,
-      'totalArticles>>',
-      totalArticles,
-      'limit>>',
-      limit
-    );
-    console.log(pages);
     if (isInvalidPath || hasError) {
       return <ErrorPage error={error} isInvalidPath={isInvalidPath} />;
     }

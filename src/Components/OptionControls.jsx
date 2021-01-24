@@ -31,15 +31,20 @@ class OptionControls extends Component {
 
   handleChange = (event) => {
     const { name, value } = event.target;
-    this.setState({ [name]: Number(value) });
-    this.props.handlePageOptions({ [name]: Number(value) });
+    if (name === 'limit' && Number(value) === 1000) {
+      this.setState({ [name]: Number(value), p: 1 });
+      this.props.handlePageOptions({ [name]: Number(value), p: 1 });
+    } else {
+      this.setState({ [name]: Number(value) });
+      this.props.handlePageOptions({ [name]: Number(value) });
+    }
   };
 
   render() {
     const { totalArticles } = this.props;
     const { limit } = this.state;
     const maxPage = Math.ceil(totalArticles / limit);
-    const pages = Array.from({ length: maxPage }, (v, i) => i + 1);
+    const pages = Array.from({ length: maxPage - 1 }, (v, i) => i + 2);
     return (
       <OptionsContainer>
         <Form.Group>
@@ -65,6 +70,9 @@ class OptionControls extends Component {
             value={this.state.p}
             onChange={this.handleChange}
           >
+            <option key={1} value={1}>
+              {1}
+            </option>
             {pages.map((page) => {
               return (
                 <option key={page} value={page}>
