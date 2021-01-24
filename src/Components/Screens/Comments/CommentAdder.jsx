@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import * as API from '../../../API';
 import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form'
+import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const CommentContainer = styled.div`
@@ -21,17 +21,17 @@ const PostButton = styled(Button)`
   background: rgb(0, 109, 119);
   border: 2px solid rgb(0, 109, 119);
   margin: 2px 0 0 0;
-  :focus{
+  :focus {
     background: rgb(0, 109, 119);
   }
-`
+`;
 
 const StyledFormControl = styled(Form.Control)`
   width: 80vw;
   height: 3em;
   border: solid 1px rgba(110, 110, 110, 0.607);
   border-radius: 3px;
-`
+`;
 
 class CommentAdder extends Component {
   state = {
@@ -56,16 +56,18 @@ class CommentAdder extends Component {
     return (
       <CommentContainer>
         <Form onSubmit={this.handleSubmit}>
-          <StyledFormControl 
-          as='textarea' 
-          rows={2}
-          name="body"
-          value={this.state.body}
-          onChange={this.handleChange}
+          <StyledFormControl
+            as="textarea"
+            rows={2}
+            name="body"
+            value={this.state.body}
+            onChange={this.handleChange}
             placeholder={`Join the conversation ${username}...`}
             required
           />
-          <PostButton variant='info' size='sm' type="submit">POST</PostButton>
+          <PostButton variant="info" size="sm" type="submit">
+            COMMENT
+          </PostButton>
         </Form>
       </CommentContainer>
     );
