@@ -26,6 +26,27 @@ export const getArticles = (topic_slug, filter, limit, p, author) => {
     });
 };
 
+export const getArticleNum = (topic_slug, filter, limit, p, author) => {
+  const filters = {
+    top: { sort_by: 'votes' },
+    popular: { sort_by: 'comment_count' },
+    new: { sort_by: 'created_at' },
+  };
+  return ncNewsAPI
+    .get('/articles', {
+      params: {
+        topic: topic_slug,
+        limit,
+        p,
+        author,
+        ...filters[filter],
+      },
+    })
+    .then(({ data }) => {
+      return data.articles.length;
+    });
+};
+
 export const getTopics = () => {
   return ncNewsAPI.get('/topics').then(({ data }) => {
     return data.topics;
