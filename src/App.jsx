@@ -34,6 +34,7 @@ library.add(
 const HeaderContainer = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 100vw;
   min-height: 6vh;
   background-color: rgb(237, 246, 249);
@@ -58,8 +59,8 @@ const HeaderContainer = styled.div`
     color: rgb(0, 109, 119);
     h1 {
       font-weight: bold;
-      font-size: 2.5em;
-      margin: 5px 5px 2px 5vw;
+      font-size: 2.8em;
+      margin: 0px 0px 0px 5vw;
     }
   }
   .post {
