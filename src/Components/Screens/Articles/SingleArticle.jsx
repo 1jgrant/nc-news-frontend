@@ -15,6 +15,25 @@ const ContentContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100vw;
+  .delCont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    max-height: 300px;
+    .deleted{
+      color: rgb(0, 109, 119);
+    }
+    button {
+      background: rgb(0, 109, 119);
+      border: 2px solid rgb(0, 109, 119);
+      margin: 1em 0 0 0;
+      :focus{
+        background: rgb(0, 109, 119);
+      }
+    }
+  } 
 `;
 
 const ArticleContainer = styled.div`
@@ -72,7 +91,7 @@ class SingleArticle extends Component {
     isLoading: true,
     hasError: false,
     error: {},
-    isDeleted: false
+    isDeleted: false,
   };
 
   componentDidMount() {
@@ -124,7 +143,11 @@ class SingleArticle extends Component {
     } else if (isDeleted) {
       return (
         <ContentContainer>
-          <h1>Article Deleted</h1>
+          <div className='delCont'>
+            <h1 className='deleted'>Article Deleted</h1>
+            <Button variant='info' onClick={() => navigate(`/users/${username}`)} block>Your Profile</Button>
+            <Button variant='info' onClick={() => navigate(`/`)} block>Home</Button>
+          </div>
         </ContentContainer>
       )
     } else
