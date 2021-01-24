@@ -11,6 +11,7 @@ const CommentsContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100vw;
+  margin-bottom: 1em;
 `;
 const CommentsContent = styled.div`
   display: flex;
