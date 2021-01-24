@@ -36,6 +36,10 @@ class OptionControls extends Component {
   };
 
   render() {
+    const { totalArticles } = this.props;
+    const { limit } = this.state;
+    const maxPage = Math.ceil(totalArticles / limit);
+    const pages = Array.from({ length: maxPage }, (v, i) => i + 1);
     return (
       <OptionsContainer>
         <Form.Group>
@@ -47,7 +51,6 @@ class OptionControls extends Component {
             defaultValue={10}
             onChange={this.handleChange}
           >
-            <option value={5}>5</option>
             <option value={10}>10</option>
             <option value={20}>20</option>
             <option value={1000}>All</option>
@@ -62,9 +65,13 @@ class OptionControls extends Component {
             value={this.state.p}
             onChange={this.handleChange}
           >
-            <option value={1}>1</option>
-            <option value={2}>2</option>
-            <option value={3}>3</option>
+            {pages.map((page) => {
+              return (
+                <option key={page} value={page}>
+                  {page}
+                </option>
+              );
+            })}
           </Form.Control>
         </Form.Group>
       </OptionsContainer>
