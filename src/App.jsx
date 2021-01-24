@@ -57,6 +57,7 @@ const HeaderContainer = styled.div`
     background: transparent;
     color: rgb(0, 109, 119);
     h1 {
+      font-weight: bold;
       font-size: 2.5em;
       margin: 5px 5px 2px 5vw;
     }
@@ -71,7 +72,7 @@ const HeaderContainer = styled.div`
 
 class App extends Component {
   state = {
-    topic: '',
+    topic: 'all',
     currentUser: {
       avatar_url:
         'https://vignette.wikia.nocookie.net/mrmen/images/d/d6/Mr-Tickle-9a.png/revision/latest?cb=20180127221953',
@@ -89,7 +90,7 @@ class App extends Component {
   };
 
   handleHome = () => {
-    this.setState({ topic: '' });
+    this.setState({ topic: 'all' });
   };
 
   render() {
