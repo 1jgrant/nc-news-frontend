@@ -50,12 +50,13 @@ export const getArticle = (article_id) => {
   });
 };
 
-export const getComments = (article_id, sort_by, order) => {
+export const getComments = (article_id, sort_by, order, limit = 1000) => {
   return ncNewsAPI
     .get(`/articles/${article_id}/comments`, {
       params: {
         sort_by,
         order,
+        limit,
       },
     })
     .then(({ data }) => {
