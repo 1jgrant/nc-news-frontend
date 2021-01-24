@@ -1,10 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const LoaderContainer = styled.div`
+  display: flex;
+  align-self: center;
+  height: 250px;
+`;
 const PingLoader = styled.div`
   align-self: center;
-  width: 50px;
-  height: 50px;
+  width: 80px;
+  height: 80px;
   margin: 5vh 0 5vh 0;
   padding: 0;
   border-radius: 50%;
@@ -23,7 +28,11 @@ const PingLoader = styled.div`
   }
 `;
 const Loader = () => {
-  return <PingLoader></PingLoader>;
+  return (
+    <LoaderContainer>
+      <PingLoader></PingLoader>
+    </LoaderContainer>
+  );
 };
 
 export default Loader;
