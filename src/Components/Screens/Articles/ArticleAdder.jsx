@@ -4,6 +4,8 @@ import Loader from '../../Loader';
 import ErrorBox from '../Errors/ErrorBox';
 import * as API from '../../../API';
 import styled from 'styled-components';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form'
 
 const AdderContainer = styled.div`
   display: flex;
@@ -11,7 +13,7 @@ const AdderContainer = styled.div`
   align-items: center;
   width: 100vw;
   form {
-    width: 50vw;
+    width: 60vw;
     min-width: 200px;
     max-width: 500px;
     display: flex;
@@ -26,6 +28,19 @@ const AdderContainer = styled.div`
       width: 100%;
       height: 3em;
     }
+  }
+  h1 {
+    margin: 1em 0 1em 0;
+    font-size: 2em;
+    
+  }
+  button {
+    background: rgb(0, 109, 119);
+    border: 2px solid rgb(0, 109, 119);
+    margin: 1em 0 0 0;
+  }
+  textarea{
+    min-height: 6em;
   }
 `;
 
@@ -91,10 +106,11 @@ class ArticleAdder extends Component {
     return (
       <AdderContainer>
         <h1>Add an article...</h1>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Topic
-            <select
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Group>
+            <Form.Label>Topic:</Form.Label>
+            <Form.Control 
+              as='select'
               value={this.state.topic}
               onChange={this.handleChange}
               name="topic"
@@ -108,31 +124,32 @@ class ArticleAdder extends Component {
                   </option>
                 );
               })}
-            </select>
-          </label>
-          <label>
-            Title
-            <input
-              type="text"
-              name="title"
-              placeholder="Add a descriptive title..."
-              value={title}
-              onChange={this.handleChange}
-              required
-            ></input>
-          </label>
-          <label>
-            Text
-            <textarea
+            </Form.Control>
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Title:</Form.Label>
+            <Form.Control 
+            type="text" 
+            placeholder="Add a descriptive title..." 
+            name="title" 
+            value={title} 
+            onChange={this.handleChange} 
+            required/>
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Article Body:</Form.Label>
+            <Form.Control 
+              as="textarea" 
+              bsPrefix='textarea'
               placeholder="Write your post here..."
               name="body"
               value={body}
               onChange={this.handleChange}
               required
-            ></textarea>
-          </label>
-          <button type="submit">POST</button>
-        </form>
+            />
+          </Form.Group>
+          <Button variant='info' type="submit" block>POST</Button>
+        </Form>
         {hasError ? <ErrorBox error={error} /> : null}
       </AdderContainer>
     );
