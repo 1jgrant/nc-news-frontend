@@ -45,6 +45,9 @@ const HeaderContainer = styled.div`
     align-items: center;
     min-height: 6vh;
     max-width: 850px;
+    @media only screen and (min-width: 768px) {
+      width: 800px;
+    }
   }
   .headerOptions {
     display: flex;
@@ -60,7 +63,7 @@ const HeaderContainer = styled.div`
     h1 {
       font-weight: bold;
       font-size: 2.8em;
-      margin: 0px 0px 0px 5vw;
+      margin: 0px 0px 0px 1rem;
     }
   }
   .post {

@@ -10,24 +10,26 @@ const CommentContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100vw;
+  @media only screen and (min-width: 768px) {
+    width: 800px;
+  }
   form {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    width: 80%;
   }
 `;
 
 const PostButton = styled(Button)`
   align-self: flex-end;
-  background: rgb(0, 109, 119);
+  background-color: rgb(0, 109, 119);
   border: 2px solid rgb(0, 109, 119);
   margin: 2px 0 0 0;
-  :focus {
-    background: rgb(0, 109, 119);
-  }
 `;
 
 const StyledFormControl = styled(Form.Control)`
-  width: 80vw;
+  width: 100%;
   height: 3em;
   border: solid 1px rgba(110, 110, 110, 0.607);
   border-radius: 3px;

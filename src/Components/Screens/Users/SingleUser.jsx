@@ -9,15 +9,25 @@ import ErrorPage from '../Errors/ErrorPage';
 const UserContainer = styled.div`
   display: flex;
   flex-direction: column;
-  h1 {
-    margin: 1vh 0 1vh 5vw;
-  }
-  img {
+  width: 100vw;
+  .wrapper {
+    display: flex;
+    flex-direction: column;
     align-self: center;
-    margin: 1vh 2vw 1vh 2vw;
-    width: auto;
-    max-width: 100%;
-    height: auto;
+    width: 100%;
+    @media only screen and (min-width: 768px) {
+      width: 800px;
+    }
+    h1 {
+      margin: 0.5rem 0 0.5rem 1rem;
+    }
+    img {
+      align-self: center;
+      margin: 0.5rem 1rem 0.5rem 0.5rem;
+      width: auto;
+      max-width: 100%;
+      height: auto;
+    }
   }
 `;
 
@@ -69,8 +79,10 @@ class SingleUser extends Component {
     }
     return (
       <UserContainer>
-        <h1>{user}</h1>
-        <img src={avatar_url} alt="user profile" />
+        <div className="wrapper">
+          <h1>{user}</h1>
+          <img src={avatar_url} alt="user profile" />
+        </div>
         <Router>
           <Articles path="*" selectedAuthor={user} />
         </Router>

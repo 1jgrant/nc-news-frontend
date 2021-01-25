@@ -5,7 +5,7 @@ import ErrorBox from '../Errors/ErrorBox';
 import * as API from '../../../API';
 import styled from 'styled-components';
 import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form'
+import Form from 'react-bootstrap/Form';
 
 const AdderContainer = styled.div`
   display: flex;
@@ -32,14 +32,13 @@ const AdderContainer = styled.div`
   h1 {
     margin: 1em 0 1em 0;
     font-size: 2em;
-    
   }
   button {
     background: rgb(0, 109, 119);
     border: 2px solid rgb(0, 109, 119);
     margin: 1em 0 0 0;
   }
-  textarea{
+  textarea {
     min-height: 6em;
   }
 `;
@@ -109,8 +108,8 @@ class ArticleAdder extends Component {
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
             <Form.Label>Topic:</Form.Label>
-            <Form.Control 
-              as='select'
+            <Form.Control
+              as="select"
               value={this.state.topic}
               onChange={this.handleChange}
               name="topic"
@@ -128,19 +127,20 @@ class ArticleAdder extends Component {
           </Form.Group>
           <Form.Group>
             <Form.Label>Title:</Form.Label>
-            <Form.Control 
-            type="text" 
-            placeholder="Add a descriptive title..." 
-            name="title" 
-            value={title} 
-            onChange={this.handleChange} 
-            required/>
+            <Form.Control
+              type="text"
+              placeholder="Add a descriptive title..."
+              name="title"
+              value={title}
+              onChange={this.handleChange}
+              required
+            />
           </Form.Group>
           <Form.Group>
             <Form.Label>Article Body:</Form.Label>
-            <Form.Control 
-              as="textarea" 
-              bsPrefix='textarea'
+            <Form.Control
+              as="textarea"
+              bsPrefix="textarea"
               placeholder="Write your post here..."
               name="body"
               value={body}
@@ -148,7 +148,9 @@ class ArticleAdder extends Component {
               required
             />
           </Form.Group>
-          <Button variant='info' type="submit" block>POST</Button>
+          <Button variant="info" type="submit" block>
+            POST
+          </Button>
         </Form>
         {hasError ? <ErrorBox error={error} /> : null}
       </AdderContainer>

@@ -25,7 +25,7 @@ const CommentCardHeader = styled.div`
   .trashIcon {
     pointer-events: none;
   }
-  button{
+  button {
     font-size: 0.7rem;
     color: rgb(0, 109, 119);
     border: 1px solid rgb(0, 109, 119);
@@ -45,13 +45,14 @@ const CommentCard = (props) => {
         <CommentCardHeader>
           <span>
             <Link className="link author" to={`/users/${author}`}>
-              <b>{author}</b> - {since_posted}
-            </Link>
+              <b>{author}</b>
+            </Link>{' '}
+            - {since_posted}
           </span>
           {props.username === author ? (
             <Button
-              size='sm'
-              variant='outline-info'
+              size="sm"
+              variant="outline-info"
               onClick={() => props.handleDeleteComment(comment_id)}
             >
               <FontAwesomeIcon className="trashIcon" icon="trash" />

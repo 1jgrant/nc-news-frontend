@@ -41,18 +41,30 @@ const ArticlesContainer = styled.div`
 
 const ControlsContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   background: rgb(237, 246, 249);
-  margin: 0.5vh 0vw 0.5vh 0vw;
-  padding: 1vh 0vw 1vh 0vw;
+  margin: 0.5rem 0rem 0.5rem 0rem;
+  padding: 0.5rem 0rem 0.5rem 0rem;
   font-size: 0.8em;
   width: 100vw;
   color: rgb(0, 109, 119);
-  .sortLinks {
-    padding-left: 5vw;
+  .wrapper {
+    display: flex;
+    flex-direction: row !important;
+    align-self: center;
+    justify-content: space-between;
     align-items: center;
-    font-size: 1em;
+    width: 100%;
+    @media only screen and (min-width: 768px) {
+      width: 800px;
+    }
+    .sortLinks {
+      justify-self: flex-start;
+      padding-left: 0.7rem;
+      align-items: center;
+      font-size: 1em;
+    }
   }
   .link {
     color: rgb(0, 109, 119);
@@ -208,23 +220,25 @@ class Articles extends Component {
     return (
       <ArticlesContainer>
         <ControlsContainer>
-          <div className="sortLinks">
-            <Link className="link" to="top">
-              <FontAwesomeIcon className="sortSelect" icon="trophy" /> Top
-            </Link>
-            <Link className="link" to="popular">
-              <FontAwesomeIcon className="sortSelect" icon="fire" /> Popular
-            </Link>
-            <Link className="link" to="new">
-              <FontAwesomeIcon className="sortSelect" icon="clock" /> New
-            </Link>
+          <div className="wrapper">
+            <div className="sortLinks">
+              <Link className="link" to="top">
+                <FontAwesomeIcon className="sortSelect" icon="trophy" /> Top
+              </Link>
+              <Link className="link" to="popular">
+                <FontAwesomeIcon className="sortSelect" icon="fire" /> Popular
+              </Link>
+              <Link className="link" to="new">
+                <FontAwesomeIcon className="sortSelect" icon="clock" /> New
+              </Link>
+            </div>
+            <OptionControls
+              handlePageOptions={this.handlePageOptions}
+              currentPage={p}
+              currentLimit={limit}
+              totalArticles={totalArticles}
+            />
           </div>
-          <OptionControls
-            handlePageOptions={this.handlePageOptions}
-            currentPage={p}
-            currentLimit={limit}
-            totalArticles={totalArticles}
-          />
         </ControlsContainer>
         {isLoading ? (
           <Loader />

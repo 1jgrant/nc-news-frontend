@@ -11,6 +11,9 @@ const CommentsContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100vw;
+  @media only screen and (min-width: 768px) {
+    width: 800px;
+  }
   margin-bottom: 1em;
 `;
 const CommentsContent = styled.div`
@@ -31,6 +34,11 @@ const CommentsContent = styled.div`
   }
   .form-label {
     margin: 0 0.5em 0 0;
+  }
+  .noComments {
+    align-self: center;
+    font-size: 1.1em;
+    margin-top: 2rem;
   }
 `;
 
@@ -88,6 +96,7 @@ class Comments extends Component {
   };
 
   render() {
+    const { comments, isLoading } = this.state;
     return (
       <CommentsContainer>
         <CommentAdder
@@ -104,10 +113,12 @@ class Comments extends Component {
               <option value="old">Old</option>
             </Form.Control>
           </Form>
-          {this.state.isLoading ? (
+          {isLoading ? (
             <Loader className="commentsLoader" />
+          ) : comments.length === 0 ? (
+            <span className="noComments">Be the first to comment!</span>
           ) : (
-            this.state.comments.map((comment) => {
+            comments.map((comment) => {
               return (
                 <CommentCard
                   key={comment.comment_id}

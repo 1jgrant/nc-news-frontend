@@ -9,9 +9,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const ArticleCardContainer = styled.div`
   display: flex;
   background: rgba(237, 246, 249, 0.298);
-  padding: 0.5vh 1vw 0.5vh 2vw;
-  margin: 0.5vh 0 0.5vh 0;
+  padding: 0.3rem 0.5rem 0.3rem 0.3rem;
+  margin: 0.1rem 0 0.1rem 0;
   max-height: 20vh;
+
+  @media only screen and (min-width: 768px) {
+    width: 800px;
+  }
 `;
 const ArticleCardContent = styled.div`
   display: flex;
@@ -45,7 +49,7 @@ const ArticleCardHeader = styled.div`
       pointer-events: none;
     }
   }
-  button{
+  button {
     font-size: 0.7rem;
     color: rgb(0, 109, 119);
     border: 1px solid rgb(0, 109, 119);
@@ -74,8 +78,8 @@ const ArticleCard = (props) => {
           <div className="delBox">
             {props.username === author ? (
               <Button
-                size='sm'
-                variant='outline-info'
+                size="sm"
+                variant="outline-info"
                 className="delete"
                 onClick={() => props.handleDeleteArticle(article_id)}
               >

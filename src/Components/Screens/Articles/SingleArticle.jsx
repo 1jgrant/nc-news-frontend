@@ -15,31 +15,40 @@ const ContentContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100vw;
-  .delCont{
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 100%;
+    @media only screen and (min-width: 768px) {
+      width: 800px;
+    }
+  }
+  .delCont {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 50vh;
     max-height: 300px;
-    .deleted{
+    .deleted {
       color: rgb(0, 109, 119);
     }
     button {
       background: rgb(0, 109, 119);
       border: 2px solid rgb(0, 109, 119);
       margin: 1em 0 0 0;
-      :focus{
+      :focus {
         background: rgb(0, 109, 119);
       }
     }
-  } 
+  }
 `;
 
 const ArticleContainer = styled.div`
   display: flex;
   justify-content: flex-start;
-  width: 100vw;
+  width: 100%;
   padding: 0em 0vw 0.5vh 0vw;
   margin: 1em 0 0.5vh 0;
   .votes {
@@ -74,7 +83,7 @@ const ArticleHeader = styled.div`
       pointer-events: none;
     }
   }
-  button{
+  button {
     font-size: 0.7rem;
     color: rgb(0, 109, 119);
     border: 1px solid rgb(0, 109, 119);
@@ -82,7 +91,7 @@ const ArticleHeader = styled.div`
 `;
 
 const ArticleBody = styled.p`
-  padding: 1em 5vw 0 0;
+  padding: 1em 2rem 0 0;
 `;
 
 class SingleArticle extends Component {
@@ -116,7 +125,7 @@ class SingleArticle extends Component {
 
   handleDeleteSingleArticle = (article_id) => {
     API.deleteArticle(article_id).then(() => {
-      this.setState({isDeleted: true})
+      this.setState({ isDeleted: true });
     });
   };
 
@@ -143,51 +152,63 @@ class SingleArticle extends Component {
     } else if (isDeleted) {
       return (
         <ContentContainer>
-          <div className='delCont'>
-            <h1 className='deleted'>Article Deleted</h1>
-            <Button variant='info' onClick={() => navigate(`/users/${username}`)} block>Your Profile</Button>
-            <Button variant='info' onClick={() => navigate(`/`)} block>Home</Button>
+          <div className="delCont">
+            <h1 className="deleted">Article Deleted</h1>
+            <Button
+              variant="info"
+              onClick={() => navigate(`/users/${username}`)}
+              block
+            >
+              Your Profile
+            </Button>
+            <Button variant="info" onClick={() => navigate(`/`)} block>
+              Home
+            </Button>
           </div>
         </ContentContainer>
-      )
+      );
     } else
       return (
         <ContentContainer>
-          <ArticleContainer>
-            <section className="votes">
-              <Votes article_id={article_id} votes={votes} />
-            </section>
-            <ArticleContent>
-              <ArticleHeader>
-                <h1>{title}</h1>
-                <div className="delBox">
-                  {username === author ? (
-                    <Button
-                      size='sm'
-                      variant='outline-info'
-                      onClick={() => this.handleDeleteSingleArticle(article_id)}
-                    >
-                      <FontAwesomeIcon className="trashIcon" icon="trash" />
-                    </Button>
-                  ) : null}
-                </div>
-              </ArticleHeader>
-              <span className="articleDetails">
-                posted in {topic} by{' '}
-                <Link className="link author" to={`/users/${author}`}>
-                  <b>
-                    <span>{author}</span>
-                  </b>
-                </Link>{' '}
-                {since_posted}
-              </span>
-              <ArticleBody>{body}</ArticleBody>
-            </ArticleContent>
-          </ArticleContainer>
-          <Comments
-            article_id={this.props.article_id}
-            username={this.props.username}
-          />
+          <div className="wrapper">
+            <ArticleContainer>
+              <section className="votes">
+                <Votes article_id={article_id} votes={votes} />
+              </section>
+              <ArticleContent>
+                <ArticleHeader>
+                  <h1>{title}</h1>
+                  <div className="delBox">
+                    {username === author ? (
+                      <Button
+                        size="sm"
+                        variant="outline-info"
+                        onClick={() =>
+                          this.handleDeleteSingleArticle(article_id)
+                        }
+                      >
+                        <FontAwesomeIcon className="trashIcon" icon="trash" />
+                      </Button>
+                    ) : null}
+                  </div>
+                </ArticleHeader>
+                <span className="articleDetails">
+                  posted in {topic} by{' '}
+                  <Link className="link author" to={`/users/${author}`}>
+                    <b>
+                      <span>{author}</span>
+                    </b>
+                  </Link>{' '}
+                  {since_posted}
+                </span>
+                <ArticleBody>{body}</ArticleBody>
+              </ArticleContent>
+            </ArticleContainer>
+            <Comments
+              article_id={this.props.article_id}
+              username={this.props.username}
+            />
+          </div>
         </ContentContainer>
       );
   }

@@ -7,8 +7,9 @@ const OptionsContainer = styled.div`
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  padding: 0 5vw 0 0;
+  padding: 0 0.7rem 0 0;
   margin: 0;
+
   div {
     display: flex;
     align-items: center;
