@@ -7,6 +7,7 @@ A full stack news aggregation and discussion site created with react</br>
 ### API hosted at https://jg-news-app.herokuapp.com/api
 
 </br>
+<img src="public/newsMock.png" >
 
 ## Table of Contents
 
@@ -61,7 +62,3 @@ $ cd ../nc-news-frontend
 $ npm i
 $ npm start
 ```
-
-## Screenshots
-
-<img src="public/newsMock.png" >
