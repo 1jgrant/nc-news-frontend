@@ -16,7 +16,6 @@ A full stack news aggregation and discussion site created with react</br>
 - [Technologies](#technologies)
 - [How to Use](#how-to-use)
   - [Code](#code)
-- [Screenshots](#screenshots)
 
 ## About
 
