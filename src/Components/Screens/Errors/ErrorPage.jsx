@@ -8,15 +8,28 @@ const ErrorContainer = styled.div`
   align-items: flex-start;
   width: 100vw;
   height: 50vh;
+  min-height: 200px;
   color: rgb(0, 109, 119);
-  h1 {
-    padding: 0;
-    margin: 0 0 0 5vw;
-    font-size: 10em;
-  }
-  h2 {
-    padding: 0;
-    margin: 0 0 0 5vw;
+
+  .wrapper {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    h1 {
+      padding: 0;
+      margin: 0 0 0 1rem;
+      font-size: 10em;
+    }
+    h2 {
+      padding: 0;
+      margin: 0 0 0 1rem;
+    }
+    @media only screen and (min-width: 768px) {
+      margin-left: 0rem;
+      width: 800px;
+    }
   }
 `;
 
@@ -30,8 +43,10 @@ const ErrorPage = (props) => {
     : { status, msg };
   return (
     <ErrorContainer className="ErrorContainer">
-      <h1>{clientMessage.status}</h1>
-      <h2>{clientMessage.msg}</h2>
+      <div className="wrapper">
+        <h1>{clientMessage.status}</h1>
+        <h2>{clientMessage.msg}</h2>
+      </div>
     </ErrorContainer>
   );
 };
