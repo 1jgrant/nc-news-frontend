@@ -129,7 +129,7 @@ class App extends Component {
           <Articles path="/*" username={username} />
           <Articles path="/articles/topics/:topic_name/*" username={username} />
           <SingleArticle path="/articles/:article_id/*" username={username} />
-          <SingleUser path="/users/:username/*" username={username} />
+          <SingleUser path="/users/:single_user/*" username={username} />
         </Router>
       </div>
     );

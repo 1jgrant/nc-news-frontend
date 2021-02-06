@@ -41,8 +41,8 @@ class SingleUser extends Component {
   };
 
   componentDidMount() {
-    const { username } = this.props;
-    API.getUser(username)
+    const { single_user } = this.props;
+    API.getUser(single_user)
       .then((user) => {
         this.setState({
           user: user.username,
@@ -67,6 +67,7 @@ class SingleUser extends Component {
 
   render() {
     const { user, avatar_url, hasError, error, isLoading } = this.state;
+    const { username } = this.props;
     if (hasError) {
       return <ErrorPage error={error} />;
     }
@@ -84,7 +85,7 @@ class SingleUser extends Component {
           <img src={avatar_url} alt="user profile" />
         </div>
         <Router>
-          <Articles path="*" selectedAuthor={user} />
+          <Articles path="*" selectedAuthor={user} username={username} />
         </Router>
       </UserContainer>
     );

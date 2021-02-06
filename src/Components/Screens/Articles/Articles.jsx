@@ -168,7 +168,6 @@ class Articles extends Component {
         1,
         selectedAuthor
       ).then((quantity) => {
-        console.log('quantity>', quantity);
         this.setState({ totalArticles: quantity });
       });
     }
