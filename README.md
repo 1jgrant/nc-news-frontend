@@ -22,7 +22,7 @@ A full stack news aggregation and discussion site created with react</br>
 This is a React frontend for a full stack news aggregation and discussion website, styled after a minimalist reddit.</br>
 The site is not set up with user authentication, rather the user selection is available to show that article and comment deletion is restricted to the author.</br>
 </br>
-This frontend requests data from a REST API created with a PostgrSQL database and Express server: [backend](https://github.com/1jgrant/nc-news-backend)
+This frontend requests data from a REST API created with a PostgreSQL database and Express server: [backend](https://github.com/1jgrant/nc-news-backend)
 </br>
 The front end news site is hosted at https://ncnews-jg.netlify.app/ </br>
 The API is hosted on Heroku, where you may view information on all endpoints https://jg-news-app.herokuapp.com/api </br>
