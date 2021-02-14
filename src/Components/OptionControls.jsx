@@ -43,6 +43,18 @@ class OptionControls extends Component {
     p: 1,
   };
 
+  componentDidMount() {
+    this.setState({ p: this.props.currentPage });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { currentPage } = this.props;
+    const { p } = this.state;
+    if (currentPage !== p) {
+      this.setState({ p: this.props.currentPage });
+    }
+  }
+
   handleChange = (event) => {
     event.preventDefault();
     const { name, value } = event.target;
