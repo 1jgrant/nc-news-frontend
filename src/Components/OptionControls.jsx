@@ -46,10 +46,14 @@ class OptionControls extends Component {
   handleChange = (event) => {
     event.preventDefault();
     const { name, value } = event.target;
-    console.log(name, value);
-    if (name === 'limit' && Number(value) === 1000) {
-      this.setState({ [name]: Number(value), p: 1 });
-      this.props.handlePageOptions({ [name]: Number(value), p: 1 });
+    const { totalArticles } = this.props;
+    const { p } = this.state;
+    if (name === 'limit') {
+      // if new limit makes current page greater than max, update to be in bounds
+      const newMaxPage = Math.ceil(totalArticles / Number(value));
+      const newPage = p > newMaxPage ? newMaxPage : p;
+      this.setState({ [name]: Number(value), p: newPage });
+      this.props.handlePageOptions({ [name]: Number(value), p: newPage });
     } else {
       this.setState({ [name]: Number(value) });
       this.props.handlePageOptions({ [name]: Number(value) });
