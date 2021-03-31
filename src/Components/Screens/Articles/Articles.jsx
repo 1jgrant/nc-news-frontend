@@ -200,7 +200,6 @@ class Articles extends Component {
     );
     const { hasError, error, isLoading, p, limit, totalArticles } = this.state;
     //create pagination bar items
-    console.log(p);
     const maxPage = Math.ceil(totalArticles / limit);
     const pages = [];
     for (let i = 1; i <= maxPage; i++) {
